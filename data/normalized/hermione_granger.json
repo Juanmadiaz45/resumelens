@@ -1,0 +1,18 @@
+{
+  "raw_qualifications": [
+    "Python",
+    "SQL",
+    "Apache Spark",
+    "Airflow",
+    "Snowflake",
+    "Git"
+  ],
+  "normalized_qualifications": [
+    "PYTHON",
+    "SQL",
+    "SPARK",
+    "AIRFLOW",
+    "SNOWFLAKE",
+    "GIT"
+  ]
+}

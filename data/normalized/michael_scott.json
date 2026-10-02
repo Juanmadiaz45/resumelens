@@ -1,0 +1,18 @@
+{
+  "raw_qualifications": [
+    "Docker",
+    "K8s",
+    "GitHub Actions",
+    "Ansible",
+    "Azure",
+    "Git"
+  ],
+  "normalized_qualifications": [
+    "DOCKER",
+    "KUBERNETES",
+    "GITHUB_ACTIONS",
+    "ANSIBLE",
+    "AZURE",
+    "GIT"
+  ]
+}

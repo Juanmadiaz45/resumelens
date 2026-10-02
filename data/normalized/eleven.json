@@ -1,0 +1,20 @@
+{
+  "raw_qualifications": [
+    "Python",
+    "Pandas",
+    "Scikit-learn",
+    "SQL",
+    "Spark",
+    "Airflow",
+    "Git"
+  ],
+  "normalized_qualifications": [
+    "PYTHON",
+    "PANDAS",
+    "SCIKIT_LEARN",
+    "SQL",
+    "SPARK",
+    "AIRFLOW",
+    "GIT"
+  ]
+}

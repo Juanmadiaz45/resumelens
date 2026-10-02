@@ -1,0 +1,22 @@
+{
+  "raw_qualifications": [
+    "JavaScript",
+    "React",
+    "Node.js",
+    "Postgres",
+    "Docker",
+    "Kubernetes",
+    "AWS",
+    "Git"
+  ],
+  "normalized_qualifications": [
+    "JAVASCRIPT",
+    "REACT",
+    "NODE_JS",
+    "POSTGRESQL",
+    "DOCKER",
+    "KUBERNETES",
+    "AWS",
+    "GIT"
+  ]
+}

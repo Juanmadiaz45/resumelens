@@ -1,0 +1,20 @@
+{
+  "raw_qualifications": [
+    "Linux",
+    "Docker",
+    "Kubernetes",
+    "Terraform",
+    "Jenkins",
+    "AWS",
+    "Git"
+  ],
+  "normalized_qualifications": [
+    "LINUX",
+    "DOCKER",
+    "KUBERNETES",
+    "TERRAFORM",
+    "JENKINS",
+    "AWS",
+    "GIT"
+  ]
+}

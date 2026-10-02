@@ -1,0 +1,18 @@
+{
+  "raw_qualifications": [
+    "TypeScript",
+    "Angular",
+    "Spring Boot",
+    "MongoDB",
+    "Git",
+    "REST API"
+  ],
+  "normalized_qualifications": [
+    "TYPESCRIPT",
+    "ANGULAR",
+    "SPRING_BOOT",
+    "MONGODB",
+    "GIT",
+    "REST_API"
+  ]
+}

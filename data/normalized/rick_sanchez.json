@@ -1,0 +1,12 @@
+{
+  "raw_qualifications": [
+    "Python",
+    "Bash",
+    "Git"
+  ],
+  "normalized_qualifications": [
+    "PYTHON",
+    "BASH",
+    "GIT"
+  ]
+}

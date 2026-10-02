@@ -1,0 +1,18 @@
+{
+  "raw_qualifications": [
+    "Python",
+    "SQL",
+    "Kafka",
+    "BigQuery",
+    "Redshift",
+    "Git"
+  ],
+  "normalized_qualifications": [
+    "PYTHON",
+    "SQL",
+    "KAFKA",
+    "BIGQUERY",
+    "REDSHIFT",
+    "GIT"
+  ]
+}

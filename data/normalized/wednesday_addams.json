@@ -1,0 +1,16 @@
+{
+  "raw_qualifications": [
+    "JS",
+    "React.js",
+    "NodeJS",
+    "Postgres",
+    "Git"
+  ],
+  "normalized_qualifications": [
+    "JAVASCRIPT",
+    "REACT",
+    "NODE_JS",
+    "POSTGRESQL",
+    "GIT"
+  ]
+}

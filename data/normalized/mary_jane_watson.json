@@ -1,0 +1,20 @@
+{
+  "raw_qualifications": [
+    "Python",
+    "Pandas",
+    "NumPy",
+    "Scikit-learn",
+    "TensorFlow",
+    "SQL",
+    "Git"
+  ],
+  "normalized_qualifications": [
+    "PYTHON",
+    "PANDAS",
+    "NUMPY",
+    "SCIKIT_LEARN",
+    "TENSORFLOW",
+    "SQL",
+    "GIT"
+  ]
+}
