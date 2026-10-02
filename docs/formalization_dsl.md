@@ -2,35 +2,35 @@
 
 ## Grammar (EBNF)
 
-> Definir en `resumelens/dsl/candidate.tx`. Resumen EBNF aquí, identificando terminales y
-> no-terminales.
+To be defined in `resumelens/dsl/candidate.tx`. Summary in EBNF here, identifying terminals and
+non-terminals.
 
 ```
 CandidateProfile ::= PersonalInfo ContactInfo Experience* Education* Skills ClassificationResult+
 ...
 ```
 
-_(completar con la gramática real una vez implementada)_
+_(fill in with the actual grammar once implemented)_
 
-### Terminales
+### Terminals
 
-- _(pendiente, p. ej. STRING, INT, EMAIL, etc.)_
+- _(pending, e.g. STRING, INT, EMAIL, etc.)_
 
-### No-terminales
+### Non-terminals
 
-- _(pendiente, p. ej. PersonalInfo, ContactInfo, Experience, Education, Skills, ClassificationResult)_
+- _(pending, e.g. PersonalInfo, ContactInfo, Experience, Education, Skills, ClassificationResult)_
 
-## Características estructurales del lenguaje
+## Structural characteristics of the language
 
-- _(soporta elementos repetidos: múltiples experiencias, educación, skills)_
-- _(reglas léxicas/sintácticas que generan rechazo)_
+- _(supports repeated elements: multiple experiences, education entries, skills)_
+- _(lexical/syntactic rules that trigger rejection)_
 
-## Validación
+## Validation
 
-- Casos válidos: _(pendiente)_
-- Casos que deben ser rechazados: _(pendiente — violaciones léxicas/sintácticas)_
+- Valid cases: _(pending)_
+- Cases that must be rejected: _(pending — lexical or syntactic violations)_
 
-## Visualización
+## Visualization
 
-- Salida: HTML o Markdown generado desde el modelo validado (`render_html` / `render_markdown`)
-- _(agregar ejemplo de salida una vez implementado)_
+- Output: HTML or Markdown generated from the validated model (`render_html` / `render_markdown`)
+- _(add an example output once implemented)_

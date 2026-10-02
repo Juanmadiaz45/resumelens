@@ -1,49 +1,51 @@
 # ResumeLens
 
-**Equipo:** Flux
-**Curso:** Computación y Estructuras Discretas III — 2026-2, Integrative Task 1
-**Integrantes:** _(agregar nombre completo)_
+**Team:** Flux
+**Course:** Computación y Estructuras Discretas III — 2026-2, Integrative Task 1
+**Members:** _(add full name)_
 
-ResumeLens es un sistema de cribado de hojas de vida (résumés) basado en teoría de lenguajes
-formales. Procesa un résumé en texto plano a través de cuatro etapas y determina si las
-calificaciones identificadas satisfacen el patrón de uno o más perfiles profesionales.
+ResumeLens is a résumé-screening system built on formal language theory. It takes a résumé as
+plain text, runs it through four processing stages, and determines whether the qualifications
+found in it satisfy the pattern of one or more professional profiles.
 
-> El sistema **no** rankea candidatos ni toma decisiones de contratación: solo valida si las
-> calificaciones explícitas en el résumé cumplen un patrón formalmente definido.
+The system does not rank candidates or make hiring decisions. It only checks whether the
+qualifications explicitly stated in a résumé match a formally defined pattern.
 
-## Perfiles soportados
+## Supported profiles
 
-1. **Full Stack Developer** (predefinido)
-2. **Machine Learning Engineer** (predefinido)
-3. _(perfil de software engineering a definir por el equipo)_
-4. _(perfil de AI/data a definir por el equipo)_
+See [`docs/profiles.md`](docs/profiles.md) for the full definition of each one.
+
+1. **Full Stack Developer** (predefined by the assignment)
+2. **Machine Learning Engineer** (predefined by the assignment)
+3. **DevOps Engineer** (software engineering profile defined by the team)
+4. **Data Engineer** (AI/data profile defined by the team)
 
 ## Pipeline
 
-| Etapa | Modelo formal | Carpeta |
+| Stage | Formal model | Folder |
 |---|---|---|
-| 1. Extracción de información | Expresiones regulares (`re`) | `resumelens/extraction/` |
-| 2. Normalización de calificaciones | Transductores de estados finitos (`pyformlang`) | `resumelens/normalization/` |
-| 3. Reconocimiento de patrones de perfil | Autómatas finitos (`pyformlang`) | `resumelens/classification/` |
-| 4. Lenguaje de perfil de candidato | Gramática libre de contexto (`textX`) | `resumelens/dsl/` |
+| 1. Information extraction | Regular expressions (`re`) | `resumelens/extraction/` |
+| 2. Qualification normalization | Finite-state transducers (`pyformlang`) | `resumelens/normalization/` |
+| 3. Qualification pattern recognition | Finite automata (`pyformlang`) | `resumelens/classification/` |
+| 4. Candidate profile language | Context-free grammar (`textX`) | `resumelens/dsl/` |
 
-`resumelens/pipeline/` orquesta las cuatro etapas en secuencia; `resumelens/ui/` expone una
-interfaz (CLI) para correr el pipeline sobre un résumé y generar la visualización final.
+`resumelens/pipeline/` chains the four stages together. `resumelens/ui/` exposes a CLI to run
+the pipeline on a résumé file and produce the final visualization.
 
-## Estructura del repositorio
+## Repository structure
 
 ```
-resumelens/          # código fuente del sistema
-  extraction/         # Etapa 1 - regex
-  normalization/       # Etapa 2 - FST
-  classification/       # Etapa 3 - autómatas
-  dsl/                   # Etapa 4 - gramática textX + render HTML/Markdown
-  pipeline/               # orquestación de las 4 etapas
-  ui/                       # interfaz de uso (CLI)
-tests/                # pruebas unitarias e de integración (pytest)
-data/sample_resumes/  # résumés de ejemplo usados para pruebas y demo
-docs/                 # documentos de diseño y formalización (markdown)
-poster/               # poster de investigación
+resumelens/            source code for the system
+  extraction/           stage 1 - regex
+  normalization/        stage 2 - finite-state transducers
+  classification/       stage 3 - automata
+  dsl/                  stage 4 - textX grammar + HTML/Markdown rendering
+  pipeline/             chains the four stages together
+  ui/                   CLI entry point
+tests/                 unit and integration tests (pytest)
+data/sample_resumes/   sample résumés used for development and demos
+docs/                  design and formalization documents
+poster/                research poster
 ```
 
 ## Setup
@@ -54,30 +56,31 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Cómo correr (placeholder, se actualizará conforme avance la implementación)
+## Running it (placeholder, will be updated as the implementation progresses)
 
 ```bash
-python -m resumelens.ui.cli data/sample_resumes/<archivo>.txt
+python -m resumelens.ui.cli data/sample_resumes/<file>.txt
 ```
 
-## Pruebas
+## Tests
 
 ```bash
 pytest
 ```
 
-## Herramientas usadas
+## Tooling
 
-- IDE: _(agregar, p. ej. VS Code / PyCharm)_
+- IDE: _(add, e.g. VS Code / PyCharm)_
 - Python 3.x
-- [pyformlang](https://pyformlang.readthedocs.io/) para transductores y autómatas
-- [textX](https://textx.github.io/textX/) para la gramática del DSL de perfil de candidato
+- [pyformlang](https://pyformlang.readthedocs.io/) for the transducers and automata
+- [textX](https://textx.github.io/textX/) for the candidate-profile DSL
 
-## Documentación de diseño
+## Design documentation
 
-Ver carpeta [`docs/`](docs/):
+See [`docs/`](docs/):
 
 - `literature_review.md`
+- `profiles.md`
 - `design_modules.md`
 - `formalization_regex.md`
 - `formalization_fst.md`

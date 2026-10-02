@@ -1,36 +1,36 @@
 # Formalization — Stage 3: Finite Automata
 
-> Por cada perfil: tupla formal completa M = (Q, Σ, δ, q0, F), tipo de autómata (DFA/NFA/ε-NFA)
-> con justificación, diagrama de transición, explicación del patrón representado, y referencia
-> a la implementación en `resumelens/classification/automata.py` (pyformlang).
+For each profile: the complete 5-tuple M = (Q, Σ, δ, q0, F), the automaton type (DFA/NFA/ε-NFA)
+with justification, a transition diagram, an explanation of the pattern it represents, and a
+pointer to its implementation in `resumelens/classification/automata.py` (pyformlang).
 
 ## Automaton: Full Stack Developer
 
-- **Q (estados):** _(pendiente)_
-- **Σ (alfabeto):** _(pendiente — términos canónicos de la Etapa 2)_
-- **δ (función/relación de transición):** _(pendiente)_
-- **q0 (estado inicial):** _(pendiente)_
-- **F (estados de aceptación):** _(pendiente)_
-- **Tipo:** DFA / NFA / ε-NFA — _(justificar)_
-- **Patrón de perfil representado:** _(explicar)_
-- **Diagrama:** _(agregar)_
+- **Q (states):** _(pending)_
+- **Σ (alphabet):** _(pending — canonical terms coming out of stage 2)_
+- **δ (transition function/relation):** _(pending)_
+- **q0 (initial state):** _(pending)_
+- **F (accepting states):** _(pending)_
+- **Type:** DFA / NFA / ε-NFA — _(justify)_
+- **Pattern represented:** _(explain)_
+- **Diagram:** _(add)_
 
 ## Automaton: Machine Learning Engineer
 
-_(misma estructura)_
+_(same structure)_
 
-## Automaton: `<perfil SE extra>`
+## Automaton: DevOps Engineer
 
-_(misma estructura)_
+_(same structure)_
 
-## Automaton: `<perfil AI/data extra>`
+## Automaton: Data Engineer
 
-_(misma estructura)_
+_(same structure)_
 
-## Ejemplo de clasificación
+## Classification example
 
 ```
-Input (de Etapa 2): PYTHON, PANDAS, TENSORFLOW, POSTGRESQL, GIT
+Input (from stage 2): PYTHON, PANDAS, TENSORFLOW, POSTGRESQL, GIT
 Profile pattern: MACHINE_LEARNING_ENGINEER
 Output: ACCEPTED
 ```

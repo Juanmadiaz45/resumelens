@@ -1,0 +1,4 @@
+Rick Sanchez
+1 year of experience experimenting with small scripts and prototypes.
+Technical Skills:
+Python, Bash, Git.

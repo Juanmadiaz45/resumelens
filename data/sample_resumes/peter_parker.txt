@@ -1,0 +1,4 @@
+Peter Parker
+4 years of experience building full stack web applications.
+Technical Skills:
+TypeScript, Angular, Spring Boot, MongoDB, REST API, Git.

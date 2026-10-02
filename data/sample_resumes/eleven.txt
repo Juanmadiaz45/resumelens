@@ -1,0 +1,4 @@
+Eleven
+3 years of experience building machine learning pipelines over large datasets.
+Technical Skills:
+Python, Pandas, Spark, Scikit-learn, Airflow, SQL, Git.

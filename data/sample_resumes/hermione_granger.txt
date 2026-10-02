@@ -1,0 +1,4 @@
+Hermione Granger
+3 years of experience building data pipelines for analytics platforms.
+Technical Skills:
+Python, SQL, Apache Spark, Airflow, Snowflake, Git.

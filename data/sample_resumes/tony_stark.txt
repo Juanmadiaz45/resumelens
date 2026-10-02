@@ -1,0 +1,4 @@
+Tony Stark
+5 years of experience automating infrastructure and deployment pipelines.
+Technical Skills:
+Linux, Docker, Kubernetes, Terraform, Jenkins, AWS, Git.

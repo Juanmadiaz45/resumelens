@@ -1,0 +1,4 @@
+Walter White
+6 years of experience designing ETL processes and data warehouses.
+Technical Skills:
+Python, Kafka, BigQuery, Redshift, SQL, Git.
