@@ -81,6 +81,7 @@ See [`docs/`](docs/):
 
 - `literature_review.md`
 - `profiles.md`
+- `class_notation_reference.md`
 - `design_modules.md`
 - `formalization_regex.md`
 - `formalization_fst.md`
