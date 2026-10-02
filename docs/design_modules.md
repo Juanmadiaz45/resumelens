@@ -50,7 +50,7 @@ can have its own unit tests and its own regex documented in `formalization_regex
 
 | Function | Signature | Returns |
 |---|---|---|
-| Normalize | `normalize(raw_terms: list[str]) -> list[str]` | canonical terms, each one passed through the matching transducer; terms with no matching transducer are either dropped or tagged `UNKNOWN`, to be decided once real data is tested |
+| Normalize | `normalize(raw_terms: list[str]) -> list[str]` | canonical terms, each one passed through the matching transducer; a term none of the transducers recognize is dropped, since an unrecognized term can't be part of any profile's alphabet in stage 3 anyway |
 | Canonical ordering | `sort_by_profile_order(terms: list[str], profile: str) -> list[str]` | the same terms reordered according to the profile's defined category order (see `formalization_fst.md`) |
 
 `normalize` doesn't know which profile it's dealing with — it just maps each raw string to its
