@@ -1,4 +1,5 @@
 Tony Stark
 5 years of experience automating infrastructure and deployment pipelines.
+Contact: tony.stark@example.com | +1-555-010-2030 | linkedin.com/in/tonystark
 Technical Skills:
 Linux, Docker, Kubernetes, Terraform, Jenkins, AWS, Git.

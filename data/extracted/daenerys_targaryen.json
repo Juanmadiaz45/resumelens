@@ -1,0 +1,30 @@
+{
+  "name": "Daenerys Targaryen",
+  "contact": {
+    "email": null,
+    "phone": null,
+    "linkedin": "linkedin.com/in/daenerystargaryen",
+    "github": null
+  },
+  "experience_years": 4,
+  "languages": [
+    "JavaScript"
+  ],
+  "frameworks": [
+    "React",
+    "Node.js"
+  ],
+  "databases": [
+    "Postgres"
+  ],
+  "cloud_tools": [
+    "Docker",
+    "Kubernetes",
+    "AWS"
+  ],
+  "data_tools": [],
+  "education": [],
+  "tools": [
+    "Git"
+  ]
+}

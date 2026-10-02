@@ -1,0 +1,29 @@
+{
+  "name": "Eleven",
+  "contact": {
+    "email": "eleven@example.com",
+    "phone": null,
+    "linkedin": null,
+    "github": null
+  },
+  "experience_years": 3,
+  "languages": [
+    "Python"
+  ],
+  "frameworks": [
+    "Pandas",
+    "Scikit-learn"
+  ],
+  "databases": [
+    "SQL"
+  ],
+  "cloud_tools": [],
+  "data_tools": [
+    "Spark",
+    "Airflow"
+  ],
+  "education": [],
+  "tools": [
+    "Git"
+  ]
+}

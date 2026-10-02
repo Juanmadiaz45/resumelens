@@ -1,0 +1,28 @@
+{
+  "name": "Mary Jane Watson",
+  "contact": {
+    "email": null,
+    "phone": null,
+    "linkedin": null,
+    "github": null
+  },
+  "experience_years": 2,
+  "languages": [
+    "Python"
+  ],
+  "frameworks": [
+    "Pandas",
+    "NumPy",
+    "Scikit-learn",
+    "TensorFlow"
+  ],
+  "databases": [
+    "SQL"
+  ],
+  "cloud_tools": [],
+  "data_tools": [],
+  "education": [],
+  "tools": [
+    "Git"
+  ]
+}

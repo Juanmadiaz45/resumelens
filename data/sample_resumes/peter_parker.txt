@@ -1,4 +1,6 @@
 Peter Parker
 4 years of experience building full stack web applications.
+Contact: peter.parker@example.com | github.com/peterparker
+Education: B.Sc. in Computer Science
 Technical Skills:
 TypeScript, Angular, Spring Boot, MongoDB, REST API, Git.

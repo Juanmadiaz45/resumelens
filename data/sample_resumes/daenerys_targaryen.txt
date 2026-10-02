@@ -1,4 +1,5 @@
 Daenerys Targaryen
 4 years of experience building and deploying web applications end to end.
+Contact: linkedin.com/in/daenerystargaryen
 Technical Skills:
 JavaScript, React, Node.js, Docker, Kubernetes, AWS, Postgres, Git.

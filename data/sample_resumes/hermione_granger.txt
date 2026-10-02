@@ -1,4 +1,6 @@
 Hermione Granger
 3 years of experience building data pipelines for analytics platforms.
+Contact: hermione.granger@example.com | github.com/hgranger
+Education: Master in Data Science
 Technical Skills:
 Python, SQL, Apache Spark, Airflow, Snowflake, Git.

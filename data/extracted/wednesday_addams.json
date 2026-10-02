@@ -1,0 +1,26 @@
+{
+  "name": "Wednesday Addams",
+  "contact": {
+    "email": null,
+    "phone": null,
+    "linkedin": null,
+    "github": null
+  },
+  "experience_years": 3,
+  "languages": [
+    "JS"
+  ],
+  "frameworks": [
+    "React.js",
+    "NodeJS"
+  ],
+  "databases": [
+    "Postgres"
+  ],
+  "cloud_tools": [],
+  "data_tools": [],
+  "education": [],
+  "tools": [
+    "Git"
+  ]
+}

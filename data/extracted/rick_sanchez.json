@@ -1,0 +1,22 @@
+{
+  "name": "Rick Sanchez",
+  "contact": {
+    "email": null,
+    "phone": null,
+    "linkedin": null,
+    "github": null
+  },
+  "experience_years": 1,
+  "languages": [
+    "Python",
+    "Bash"
+  ],
+  "frameworks": [],
+  "databases": [],
+  "cloud_tools": [],
+  "data_tools": [],
+  "education": [],
+  "tools": [
+    "Git"
+  ]
+}

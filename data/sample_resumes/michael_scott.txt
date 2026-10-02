@@ -1,4 +1,5 @@
 Michael Scott
 3 years of experience managing CI/CD pipelines and cloud infrastructure.
+Contact: michael.scott@example.com
 Technical Skills:
 Docker, K8s, GitHub Actions, Ansible, Azure, Git.

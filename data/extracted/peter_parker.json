@@ -1,0 +1,32 @@
+{
+  "name": "Peter Parker",
+  "contact": {
+    "email": "peter.parker@example.com",
+    "phone": null,
+    "linkedin": null,
+    "github": "github.com/peterparker"
+  },
+  "experience_years": 4,
+  "languages": [
+    "TypeScript"
+  ],
+  "frameworks": [
+    "Angular",
+    "Spring Boot"
+  ],
+  "databases": [
+    "MongoDB"
+  ],
+  "cloud_tools": [],
+  "data_tools": [],
+  "education": [
+    {
+      "degree": "B.Sc.",
+      "field": "Computer Science"
+    }
+  ],
+  "tools": [
+    "Git",
+    "REST API"
+  ]
+}

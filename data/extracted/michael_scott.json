@@ -1,0 +1,25 @@
+{
+  "name": "Michael Scott",
+  "contact": {
+    "email": "michael.scott@example.com",
+    "phone": null,
+    "linkedin": null,
+    "github": null
+  },
+  "experience_years": 3,
+  "languages": [],
+  "frameworks": [],
+  "databases": [],
+  "cloud_tools": [
+    "Docker",
+    "K8s",
+    "GitHub Actions",
+    "Ansible",
+    "Azure"
+  ],
+  "data_tools": [],
+  "education": [],
+  "tools": [
+    "Git"
+  ]
+}

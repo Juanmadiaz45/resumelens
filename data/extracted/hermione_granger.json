@@ -1,0 +1,32 @@
+{
+  "name": "Hermione Granger",
+  "contact": {
+    "email": "hermione.granger@example.com",
+    "phone": null,
+    "linkedin": null,
+    "github": "github.com/hgranger"
+  },
+  "experience_years": 3,
+  "languages": [
+    "Python"
+  ],
+  "frameworks": [],
+  "databases": [
+    "SQL"
+  ],
+  "cloud_tools": [],
+  "data_tools": [
+    "Apache Spark",
+    "Airflow",
+    "Snowflake"
+  ],
+  "education": [
+    {
+      "degree": "Master",
+      "field": "Data Science"
+    }
+  ],
+  "tools": [
+    "Git"
+  ]
+}

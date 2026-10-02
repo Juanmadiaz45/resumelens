@@ -1,0 +1,26 @@
+{
+  "name": "Tony Stark",
+  "contact": {
+    "email": "tony.stark@example.com",
+    "phone": "+1-555-010-2030",
+    "linkedin": "linkedin.com/in/tonystark",
+    "github": null
+  },
+  "experience_years": 5,
+  "languages": [],
+  "frameworks": [],
+  "databases": [],
+  "cloud_tools": [
+    "Linux",
+    "Docker",
+    "Kubernetes",
+    "Terraform",
+    "Jenkins",
+    "AWS"
+  ],
+  "data_tools": [],
+  "education": [],
+  "tools": [
+    "Git"
+  ]
+}

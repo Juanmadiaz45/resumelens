@@ -1,0 +1,27 @@
+{
+  "name": "Walter White",
+  "contact": {
+    "email": null,
+    "phone": "+1-505-555-0199",
+    "linkedin": null,
+    "github": null
+  },
+  "experience_years": 6,
+  "languages": [
+    "Python"
+  ],
+  "frameworks": [],
+  "databases": [
+    "SQL"
+  ],
+  "cloud_tools": [],
+  "data_tools": [
+    "Kafka",
+    "BigQuery",
+    "Redshift"
+  ],
+  "education": [],
+  "tools": [
+    "Git"
+  ]
+}
