@@ -2,4 +2,4 @@ Eleven
 3 years of experience building machine learning pipelines over large datasets.
 Contact: eleven@example.com
 Technical Skills:
-Python, Pandas, Spark, Scikit-learn, Airflow, SQL, Git.
+Python, Pandas, Scikit-learn, TensorFlow, Spark, Airflow, SQL, Git.

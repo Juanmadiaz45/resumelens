@@ -169,7 +169,7 @@ PROFILE_ORDER = {
         "PANDAS", "NUMPY",
         "SCIKIT_LEARN",
         "TENSORFLOW", "PYTORCH",
-        "SQL",
+        "SQL", "NOSQL", "POSTGRESQL", "MYSQL", "MONGODB", "SQLITE", "REDIS", "CASSANDRA",
         "GIT",
     ],
     "DEVOPS_ENGINEER": [
@@ -183,10 +183,8 @@ PROFILE_ORDER = {
     ],
     "DATA_ENGINEER": [
         "PYTHON",
-        "SQL",
-        "SPARK",
-        "AIRFLOW",
-        "KAFKA",
+        "SQL", "NOSQL", "POSTGRESQL", "MYSQL", "MONGODB", "SQLITE", "REDIS", "CASSANDRA",
+        "SPARK", "AIRFLOW", "KAFKA",
         "SNOWFLAKE", "BIGQUERY", "REDSHIFT",
         "GIT",
     ],

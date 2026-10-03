@@ -124,7 +124,7 @@ def test_mixed_resume_contains_qualifications_from_two_profiles():
     text = read_sample("daenerys_targaryen.txt")
     assert extract_languages(text) == ["JavaScript"]
     assert extract_frameworks(text) == ["React", "Node.js"]
-    assert extract_cloud_tools(text) == ["Docker", "Kubernetes", "AWS"]
+    assert extract_cloud_tools(text) == ["Docker", "Kubernetes", "Terraform", "Jenkins", "AWS"]
 
 
 # --- candidate with too few qualifications for any profile ---------------------

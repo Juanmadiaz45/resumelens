@@ -6,6 +6,8 @@
     "Postgres",
     "Docker",
     "Kubernetes",
+    "Terraform",
+    "Jenkins",
     "AWS",
     "Git"
   ],
@@ -16,6 +18,8 @@
     "POSTGRESQL",
     "DOCKER",
     "KUBERNETES",
+    "TERRAFORM",
+    "JENKINS",
     "AWS",
     "GIT"
   ]

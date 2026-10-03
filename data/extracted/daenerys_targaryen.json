@@ -20,6 +20,8 @@
   "cloud_tools": [
     "Docker",
     "Kubernetes",
+    "Terraform",
+    "Jenkins",
     "AWS"
   ],
   "data_tools": [],

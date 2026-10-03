@@ -12,7 +12,8 @@
   ],
   "frameworks": [
     "Pandas",
-    "Scikit-learn"
+    "Scikit-learn",
+    "TensorFlow"
   ],
   "databases": [
     "SQL"
