@@ -17,19 +17,21 @@ lists the cases the implementation will need to handle.
 | ID | Scenario | Input | Expected result |
 |---|---|---|---|
 | N1 | Known variants of the same term | `JS`, `Javascript` | both map to `JAVASCRIPT` |
-| N2 | Term not recognized by any transducer | _(pending)_ | handled explicitly (dropped or flagged `UNKNOWN`) |
+| N2 | Term not recognized by any transducer | `"COBOL"` | dropped from the normalized list (see `normalize()` in `transducers.py`) |
 | N3 | Canonical ordering per profile | unordered list | list reordered according to the profile's canonical order |
 
 ## Stage 3 — Classification (automata)
 
 | ID | Scenario | Input | Expected result |
 |---|---|---|---|
-| C1 | Candidate matches Full Stack Developer | full sequence | `ACCEPTED` for Full Stack |
-| C2 | Candidate matches Machine Learning Engineer | sequence from the assignment example | `ACCEPTED` for ML Engineer |
-| C3 | Candidate matches DevOps Engineer | see `devops_1.txt` | `ACCEPTED` for DevOps |
-| C4 | Candidate matches Data Engineer | see `data_engineer_1.txt` | `ACCEPTED` for Data Engineer |
-| C5 | Candidate matches no profile | see `insufficient_profile.txt` | `REJECTED` on all four profiles |
-| C6 | Candidate matches more than one profile | see `mixed_ml_data.txt` | `ACCEPTED` on more than one profile |
+| C1 | Candidate matches Full Stack Developer | `wednesday_addams.txt` | `ACCEPTED` for Full Stack |
+| C2 | Candidate matches Machine Learning Engineer | `mary_jane_watson.txt` (the assignment's own example) | `ACCEPTED` for ML Engineer |
+| C3 | Candidate matches DevOps Engineer | `tony_stark.txt` | `ACCEPTED` for DevOps |
+| C4 | Candidate matches Data Engineer | `hermione_granger.txt` | `ACCEPTED` for Data Engineer |
+| C5 | Candidate matches no profile | `rick_sanchez.txt` | `REJECTED` on all four profiles |
+| C6 | Candidate matches more than one profile | `daenerys_targaryen.txt` (Full Stack + DevOps), `eleven.txt` (ML Engineer + Data Engineer) | `ACCEPTED` on more than one profile |
+| C7 | Optional qualification missing doesn't block acceptance | `mary_jane_watson.txt` has no Scikit-learn; `michael_scott.txt` has no Linux | `ACCEPTED` for their respective profiles anyway |
+| C8 | Database category accepts any recognized DB term, not just literally "SQL" | `wednesday_addams.txt` has `POSTGRESQL`, not `SQL` | `ACCEPTED` for Full Stack |
 
 ## Stage 4 — DSL (textX)
 
@@ -46,4 +48,4 @@ lists the cases the implementation will need to handle.
 |---|---|---|
 | I1 | `wednesday_addams.txt` through the full pipeline | `ACCEPTED` for Full Stack, valid HTML output |
 | I2 | `mary_jane_watson.txt` through the full pipeline | `ACCEPTED` for ML Engineer, valid HTML output |
-| I3 | `insufficient_profile.txt` through the full pipeline | `REJECTED` on all profiles, HTML still generated with the rejection noted |
+| I3 | `rick_sanchez.txt` through the full pipeline | `REJECTED` on all profiles, HTML still generated with the rejection noted |
