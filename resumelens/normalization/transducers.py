@@ -104,6 +104,9 @@ _ALL_MAPS = [
     TOOLS_MAP,
 ]
 
+CANONICAL_TERMS = frozenset(term for mapping in _ALL_MAPS for term in mapping.values())
+DATABASE_TERMS = frozenset(DATABASE_MAP.values())
+
 
 def _build_fst(mapping: dict) -> FST:
     """Build a 2-state FST (q0 -> qf) with one transition per entry in `mapping`.

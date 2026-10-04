@@ -1,0 +1,13 @@
+{
+  "normalized_qualifications": [
+    "PYTHON",
+    "BASH",
+    "GIT"
+  ],
+  "profiles": {
+    "FULL_STACK_DEVELOPER": "REJECTED",
+    "MACHINE_LEARNING_ENGINEER": "REJECTED",
+    "DEVOPS_ENGINEER": "REJECTED",
+    "DATA_ENGINEER": "REJECTED"
+  }
+}

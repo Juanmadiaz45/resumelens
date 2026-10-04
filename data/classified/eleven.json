@@ -1,0 +1,18 @@
+{
+  "normalized_qualifications": [
+    "PYTHON",
+    "PANDAS",
+    "SCIKIT_LEARN",
+    "TENSORFLOW",
+    "SQL",
+    "SPARK",
+    "AIRFLOW",
+    "GIT"
+  ],
+  "profiles": {
+    "FULL_STACK_DEVELOPER": "REJECTED",
+    "MACHINE_LEARNING_ENGINEER": "ACCEPTED",
+    "DEVOPS_ENGINEER": "REJECTED",
+    "DATA_ENGINEER": "ACCEPTED"
+  }
+}
