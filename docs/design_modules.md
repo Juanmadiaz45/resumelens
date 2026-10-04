@@ -62,7 +62,7 @@ originally listed their skills.
 
 | Function | Signature | Returns |
 |---|---|---|
-| Classify | `classify(sequence: list[str]) -> dict[str, str]` | one entry per supported profile, each `"ACCEPTED"` or `"REJECTED"`, e.g. `{"FULL_STACK_DEVELOPER": "REJECTED", "ML_ENGINEER": "ACCEPTED", "DEVOPS_ENGINEER": "REJECTED", "DATA_ENGINEER": "ACCEPTED"}` |
+| Classify | `classify(normalized_terms: list[str]) -> dict[str, str]` | one entry per supported profile, each `"ACCEPTED"` or `"REJECTED"`, e.g. `{"FULL_STACK_DEVELOPER": "ACCEPTED", "MACHINE_LEARNING_ENGINEER": "REJECTED", "DEVOPS_ENGINEER": "REJECTED", "DATA_ENGINEER": "REJECTED"}`. Takes the normalized, unsorted list: each profile sorts it with its own canonical order before running its automaton. |
 
 Internally this runs the sequence against the four automata (one per profile) built in
 `automata.py` and just collects whether each one accepted it. A candidate can be accepted into
