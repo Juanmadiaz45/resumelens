@@ -1,0 +1,16 @@
+# Mary Jane Watson
+
+## Experience
+
+- 2 years
+
+## Skills
+
+`PYTHON` `PANDAS` `NUMPY` `SCIKIT_LEARN` `TENSORFLOW` `SQL` `GIT`
+
+## Profile classification
+
+- FULL_STACK_DEVELOPER: **REJECTED**
+- MACHINE_LEARNING_ENGINEER: **ACCEPTED**
+- DEVOPS_ENGINEER: **REJECTED**
+- DATA_ENGINEER: **REJECTED**

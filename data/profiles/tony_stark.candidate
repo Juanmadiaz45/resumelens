@@ -1,0 +1,5 @@
+candidate "Tony Stark"
+contact email tony.stark@example.com phone +1-555-010-2030 linkedin linkedin.com/in/tonystark
+experience 5 years
+skills LINUX DOCKER KUBERNETES TERRAFORM JENKINS AWS GIT
+classification FULL_STACK_DEVELOPER REJECTED MACHINE_LEARNING_ENGINEER REJECTED DEVOPS_ENGINEER ACCEPTED DATA_ENGINEER REJECTED

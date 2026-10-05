@@ -1,0 +1,16 @@
+# Wednesday Addams
+
+## Experience
+
+- 3 years
+
+## Skills
+
+`JAVASCRIPT` `REACT` `NODE_JS` `POSTGRESQL` `GIT`
+
+## Profile classification
+
+- FULL_STACK_DEVELOPER: **ACCEPTED**
+- MACHINE_LEARNING_ENGINEER: **REJECTED**
+- DEVOPS_ENGINEER: **REJECTED**
+- DATA_ENGINEER: **REJECTED**

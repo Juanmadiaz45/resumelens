@@ -1,0 +1,6 @@
+candidate "Peter Parker"
+contact email peter.parker@example.com github github.com/peterparker
+experience 4 years
+education B.Sc. "Computer Science"
+skills TYPESCRIPT ANGULAR SPRING_BOOT MONGODB GIT REST_API
+classification FULL_STACK_DEVELOPER ACCEPTED MACHINE_LEARNING_ENGINEER REJECTED DEVOPS_ENGINEER REJECTED DATA_ENGINEER REJECTED

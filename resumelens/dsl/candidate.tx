@@ -1,0 +1,67 @@
+// ResumeLens candidate profile language.
+// Formal description (EBNF, terminals and non-terminals) lives in docs/formalization_dsl.md.
+
+CandidateProfile:
+    'candidate' name=STRING
+    contact=Contact
+    experiences*=Experience
+    educations*=Education
+    'skills' skills+=Skill
+    'classification' results+=ProfileResult
+;
+
+Contact:
+    'contact'
+    ('email' email=Email)?
+    ('phone' phone=Phone)?
+    ('linkedin' linkedin=LinkedinUrl)?
+    ('github' github=GithubUrl)?
+;
+
+Experience:
+    'experience' years=INT 'years'
+;
+
+Education:
+    'education' degree=Degree field=STRING
+;
+
+Skill:
+    name=CanonicalTerm
+;
+
+ProfileResult:
+    profile=ProfileName verdict=Verdict
+;
+
+Degree:
+    'B.Sc.' | 'M.Sc.' | 'Bachelor' | 'Master' | 'PhD'
+;
+
+ProfileName:
+    'FULL_STACK_DEVELOPER' | 'MACHINE_LEARNING_ENGINEER' | 'DEVOPS_ENGINEER' | 'DATA_ENGINEER'
+;
+
+Verdict:
+    'ACCEPTED' | 'REJECTED'
+;
+
+CanonicalTerm:
+    /[A-Z][A-Z0-9_]*/
+;
+
+Email:
+    /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/
+;
+
+Phone:
+    /\+?\d[\d\-.\s()]{6,}\d/
+;
+
+LinkedinUrl:
+    /(https?:\/\/)?(www\.)?linkedin\.com\/in\/[\w-]+/
+;
+
+GithubUrl:
+    /(https?:\/\/)?(www\.)?github\.com\/[\w-]+/
+;
