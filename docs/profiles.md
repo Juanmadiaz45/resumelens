@@ -4,7 +4,7 @@ ResumeLens supports four professional profiles. Two of them are fixed by the ass
 (Full Stack Developer and Machine Learning Engineer). The other two were chosen to round out
 the coverage of the pipeline: one more profile on the software engineering side and one more
 on the AI/data side. The reasoning behind the choice was simple — both profiles share several
-qualifications with the predefined ones (Git, SQL, Python), which forces the classification
+qualifications with the predefined ones (Git, a database, Python), which forces the classification
 automata to actually distinguish between overlapping vocabularies instead of just checking for
 disjoint keyword sets.
 
@@ -17,7 +17,7 @@ Qualifications:
 - JavaScript or TypeScript
 - React, Angular, or Vue
 - Node.js, Django, Spring Boot (or an equivalent backend framework)
-- SQL or NoSQL database
+- A database (any recognized one: SQL, NoSQL, PostgreSQL, MySQL, MongoDB, and others)
 - REST APIs
 - Git
 
@@ -32,7 +32,7 @@ Qualifications:
 - Scikit-learn
 - TensorFlow or PyTorch
 - Machine learning model development
-- SQL
+- A database (any recognized one, as above)
 - Git
 
 ## 3. DevOps Engineer (team-defined, software engineering)
@@ -56,12 +56,12 @@ Qualifications:
 
 A Data Engineer designs and maintains the pipelines and infrastructure used to collect,
 transform, and store data at scale, usually as a prerequisite for the work a Machine Learning
-Engineer does downstream. This overlap with ML Engineer (Python, SQL) is intentional: it is the
+Engineer does downstream. This overlap with ML Engineer (Python, a database) is intentional: it is the
 pair of profiles that stress-tests the classification stage the most.
 
 Qualifications:
 - Python
-- SQL
+- A database (any recognized one, as above)
 - Apache Spark
 - Airflow
 - Kafka
@@ -73,7 +73,7 @@ Qualifications:
 | Qualification | FS Dev | ML Engineer | DevOps | Data Engineer |
 |---|---|---|---|---|
 | Git | yes | yes | yes | yes |
-| SQL | yes | yes | — | yes |
+| Database (any recognized) | yes | yes | — | yes |
 | Python | — | yes | — | yes |
 | Cloud provider | — | — | yes | sometimes (warehouse) |
 
@@ -81,3 +81,26 @@ This table is the reason the canonical ordering and the automata alphabets need 
 carefully in stages 2 and 3 — a candidate who only lists `Python, SQL, Git` should not be
 blindly accepted into both ML Engineer and Data Engineer; the rest of the sequence has to carry
 the distinction.
+
+## Note on the database slot
+
+The profile definitions above name the qualification as "a database" because the pattern is about
+having some database experience, not a specific product. The automata treat every recognized
+database term (SQL, NoSQL, PostgreSQL, MySQL, MongoDB, SQLite, Redis, Cassandra) as satisfying the
+same slot. This was confirmed by the assignment's own Machine Learning Engineer example, which is
+accepted with `POSTGRESQL` in the database position. See `formalization_automata.md`.
+
+## How the automata read these lists
+
+The lists above describe the qualifications of each profile. The automata use them as
+required categories, not as a checklist where every item must appear:
+
+- **Required category:** at least one term from the category must be present. For Data
+  Engineer, that means at least one of Spark, Airflow, or Kafka, not all three.
+- **Optional category:** the category may be absent without rejecting the candidate. Scikit-learn
+  (ML Engineer), Linux (DevOps), REST API (Full Stack), and the data warehouse (Data Engineer)
+  are treated this way.
+- **Git** is required for all four profiles, because each profile definition above lists it.
+  Its position is always last, since it is the final step in every automaton.
+
+The exact patterns are in `formalization_automata.md`.
