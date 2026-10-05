@@ -163,3 +163,28 @@ def test_extract_all_does_not_crash_on_any_sample_resume(filename):
     text = read_sample(filename)
     result = extract_all(text)
     assert result["name"] is not None
+
+
+# --- edge cases from docs/test_cases.md --------------------------------------------
+
+
+def test_resume_without_a_skills_section_gives_empty_lists_not_an_error():
+    text = "Nobody Known\n2 years of experience.\nHobbies: chess, cooking.\n"
+    assert extract_languages(text) == []
+    assert extract_frameworks(text) == []
+    assert extract_tools(text) == []
+    assert extract_experience_years(text) == 2
+
+
+def test_mixed_naming_formats_are_detected_as_separate_raw_strings():
+    text = "Technical Skills:\nJS, React.js, NodeJS\n"
+    assert extract_languages(text) == ["JS"]
+    assert extract_frameworks(text) == ["React.js", "NodeJS"]
+
+
+@pytest.mark.parametrize(
+    "phrase, expected",
+    [("3 years of experience", 3), ("4+ years of experience", 4), ("1 year of experience", 1)],
+)
+def test_experience_years_in_different_phrasings(phrase, expected):
+    assert extract_experience_years(f"Summary: {phrase} building apps.") == expected
