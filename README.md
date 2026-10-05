@@ -1,8 +1,10 @@
 # ResumeLens
 
 **Team:** Flux
+
 **Course:** Computación y Estructuras Discretas III — 2026-2, Integrative Task 1
-**Members:** _(add full name)_
+
+**Members:** Juan Manuel Diaz Moreno - A00394477
 
 ResumeLens is a résumé-screening system built on formal language theory. It takes a résumé as
 plain text, runs it through four processing stages, and determines whether the qualifications
