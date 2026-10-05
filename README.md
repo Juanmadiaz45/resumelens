@@ -108,7 +108,7 @@ poster/                research poster
 - [pyformlang](https://pyformlang.readthedocs.io/) for the transducers and automata
 - [textX](https://textx.github.io/textX/) for the candidate-profile grammar
 - pytest for the test suite
-- IDE: _(add, e.g. VS Code / PyCharm)_
+- IDE: _(to be confirmed by the team)_
 
 ## Design documentation
 
@@ -123,3 +123,7 @@ See [`docs/`](docs/):
 - `formalization_automata.md`
 - `formalization_dsl.md`
 - `test_cases.md`
+- `presentation.md` — the 10-minute presentation script
+- `ai_usage_log.md` — record of AI interactions (draft, to be completed by the student)
+
+The research poster is in `poster/poster.html` (print it as an A1 landscape PDF from a browser).

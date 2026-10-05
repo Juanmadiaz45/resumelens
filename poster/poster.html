@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ResumeLens — Research Poster</title>
+<style>
+@page { size: A1 landscape; margin: 1.2cm; }
+* { box-sizing: border-box; }
+body { font-family: "Helvetica Neue", Arial, sans-serif; color: #1f2933; margin: 0; background: #fff; }
+.poster { width: 100%; max-width: 1400px; margin: 0 auto; padding: 1.2rem; }
+header { border-bottom: 6px solid #2f5d8a; padding-bottom: 0.8rem; margin-bottom: 1rem; }
+h1 { font-size: 2.8rem; margin: 0 0 0.3rem; color: #173b5c; }
+.authors { font-size: 1.2rem; margin: 0; }
+.message { font-size: 1.5rem; font-weight: 600; background: #eef4fa; border-left: 8px solid #2f5d8a; padding: 0.7rem 1rem; margin: 0.8rem 0 1.2rem; }
+.grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.2rem; }
+section { border: 2px solid #d9e2ec; border-radius: 8px; padding: 0.9rem 1.1rem; }
+h2 { font-size: 1.35rem; color: #2f5d8a; margin: 0 0 0.5rem; border-bottom: 1px solid #d9e2ec; padding-bottom: 0.3rem; }
+p, li { font-size: 1.05rem; line-height: 1.4; margin: 0.3rem 0; }
+ul { padding-left: 1.2rem; margin: 0.2rem 0; }
+.pipeline { display: flex; align-items: stretch; gap: 0.5rem; margin: 0.6rem 0; }
+.stage { flex: 1; background: #173b5c; color: #fff; border-radius: 6px; padding: 0.5rem; text-align: center; font-size: 0.95rem; }
+.stage strong { display: block; font-size: 1.05rem; margin-bottom: 0.2rem; }
+.arrow { align-self: center; font-size: 1.5rem; color: #2f5d8a; }
+.example { font-family: ui-monospace, Menlo, monospace; font-size: 0.92rem; background: #f5f7fa; border-radius: 4px; padding: 0.5rem; line-height: 1.5; }
+table { border-collapse: collapse; width: 100%; font-size: 0.98rem; }
+th, td { border-bottom: 1px solid #d9e2ec; padding: 0.3rem 0.4rem; text-align: left; }
+th { background: #eef4fa; }
+.yes { color: #1b7f3b; font-weight: 600; }
+.no { color: #8a94a6; }
+.wide { grid-column: span 3; }
+footer { font-size: 0.85rem; color: #52606d; margin-top: 0.8rem; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+<header>
+  <h1>ResumeLens: Screening Résumés with Formal Languages</h1>
+  <p class="authors">Flux — Juan Manuel Diaz Moreno · Computación y Estructuras Discretas III, 2026-2</p>
+</header>
+
+<div class="message">
+  A résumé goes in as plain text. Four formal models decide which professional profiles its
+  explicit qualifications satisfy.
+</div>
+
+<div class="grid">
+
+<section>
+  <h2>Problem</h2>
+  <p>Résumés describe the same skill in many ways: <em>JS</em>, <em>Javascript</em>, <em>JavaScript</em>.
+  Checking a résumé against a profile means first deciding which strings mean the same thing.</p>
+  <p>ResumeLens does not rank candidates or make hiring decisions. It only checks whether the
+  listed qualifications match a formally defined pattern.</p>
+</section>
+
+<section>
+  <h2>Approach</h2>
+  <p>Each stage uses one formal model. Its output is the next stage's input.</p>
+  <div class="pipeline">
+    <div class="stage"><strong>1 Extract</strong>regular expressions</div>
+    <div class="arrow">→</div>
+    <div class="stage"><strong>2 Normalize</strong>finite-state transducers</div>
+    <div class="arrow">→</div>
+    <div class="stage"><strong>3 Classify</strong>finite automata (DFA)</div>
+    <div class="arrow">→</div>
+    <div class="stage"><strong>4 Describe</strong>context-free grammar (textX)</div>
+  </div>
+  <p>Four profiles: Full Stack Developer and Machine Learning Engineer (assignment), DevOps Engineer
+  and Data Engineer (team).</p>
+</section>
+
+<section>
+  <h2>Example: Wednesday Addams</h2>
+  <p><strong>Raw</strong> (stage 1): JS, React.js, NodeJS, Postgres, Git</p>
+  <p><strong>Normalized</strong> (stage 2):</p>
+  <div class="example">JAVASCRIPT, REACT, NODE_JS, POSTGRESQL, GIT</div>
+  <p><strong>Classified</strong> (stage 3): Full Stack Developer — <span class="yes">ACCEPTED</span></p>
+  <p><strong>Profile</strong> (stage 4): a validated candidate description and an HTML page.</p>
+</section>
+
+<section class="wide">
+  <h2>Results: ten sample résumés</h2>
+  <table>
+    <thead>
+      <tr><th>Résumé</th><th>Full Stack Developer</th><th>Machine Learning Engineer</th><th>DevOps Engineer</th><th>Data Engineer</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>wednesday_addams</td><td class="yes">ACCEPTED</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+      <tr><td>peter_parker</td><td class="yes">ACCEPTED</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+      <tr><td>daenerys_targaryen</td><td class="yes">ACCEPTED</td><td class="no">—</td><td class="yes">ACCEPTED</td><td class="no">—</td></tr>
+      <tr><td>mary_jane_watson</td><td class="no">—</td><td class="yes">ACCEPTED</td><td class="no">—</td><td class="no">—</td></tr>
+      <tr><td>eleven</td><td class="no">—</td><td class="yes">ACCEPTED</td><td class="no">—</td><td class="yes">ACCEPTED</td></tr>
+      <tr><td>tony_stark</td><td class="no">—</td><td class="no">—</td><td class="yes">ACCEPTED</td><td class="no">—</td></tr>
+      <tr><td>michael_scott</td><td class="no">—</td><td class="no">—</td><td class="yes">ACCEPTED</td><td class="no">—</td></tr>
+      <tr><td>hermione_granger</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">ACCEPTED</td></tr>
+      <tr><td>walter_white</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">ACCEPTED</td></tr>
+      <tr><td>rick_sanchez</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+    </tbody>
+  </table>
+  <p>Results are produced by running the pipeline (<code>data/classified/</code>). Two résumés were
+  built to satisfy two profiles each, and the automata check each profile independently.</p>
+</section>
+
+<section>
+  <h2>Design decisions</h2>
+  <ul>
+    <li>Transducers read whole tokens, not characters.</li>
+    <li>Stage 2 sorts terms by profile, so stage 3 never has to guess which slot a term fills. This
+    makes the automata deterministic (DFA).</li>
+    <li>Optional qualifications don't reject a candidate.</li>
+    <li>Any recognized database term fills the database slot.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Validation</h2>
+  <ul>
+    <li><strong>99</strong> automated tests across the four stages and the command line.</li>
+    <li>The grammar rejects lexical errors (e.g. lowercase skill), syntax errors (e.g. missing
+    skills section), and out-of-vocabulary skills (e.g. COBOL).</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Limitations and future work</h2>
+  <ul>
+    <li>Extraction assumes the name is on the first line.</li>
+    <li>Language names are case-sensitive, to avoid matching the word "go".</li>
+    <li>Only ten hand-written résumés were tested.</li>
+    <li>Adding a new term means changing the regex and the transducer.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Key references</h2>
+  <ul>
+    <li>Hopcroft, Motwani &amp; Ullman (2006). <em>Introduction to Automata Theory, Languages, and Computation.</em></li>
+    <li>Mohri (1997). Finite-state transducers in language and speech processing. <em>Computational Linguistics</em>, 23(2).</li>
+    <li>Karttunen et al. (1996). Regular expressions for language engineering. <em>Natural Language Engineering</em>, 2(4).</li>
+    <li>Dejanović et al. (2017). TextX: A Python tool for DSL implementation. <em>Knowledge-Based Systems</em>, 115.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Code</h2>
+  <p>github.com/Juanmadiaz45/resumelens</p>
+  <p>Run: <code>python -m resumelens.ui.cli data/sample_resumes/wednesday_addams.txt</code></p>
+</section>
+
+</div>
+
+<footer>Universidad ICESI · Computación y Estructuras Discretas III · 2026-2 · Integrative Task 1</footer>
+</div>
+</body>
+</html>
