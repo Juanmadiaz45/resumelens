@@ -35,11 +35,15 @@ Tool used: Claude Code (Claude model), in the terminal, working in this reposito
 
 - The pytest suite (99 tests) was run after each change, and the sample outputs were regenerated
   from the scripts.
-- The references in `docs/literature_review.md` were checked with web search for three of the
-  nine entries (Mohri 1997, Karttunen et al. 1996, Dejanović et al. 2017). The page numbers and
-  venue of the Karttunen entry were corrected during that check. The remaining entries (Beesley
-  & Karttunen 2003, Chomsky 1956, Fowler 2010, Hopcroft et al. 2006, Sipser 2013) have **not**
-  been checked and must be verified by the student before submission.
+- The references in `docs/literature_review.md` were checked with web search. Confirmed: Mohri
+  (1997), *Computational Linguistics* 23(2), pp. 269–311; Dejanović et al. (2017), *Knowledge-Based
+  Systems* 115; Beesley & Karttunen (2003), CSLI; Chomsky (1956), *IRE Transactions on Information
+  Theory* 2(3), pp. 113–124; Fowler (2010), Addison-Wesley; Hopcroft, Motwani & Ullman (2006), 3rd
+  edition, Addison-Wesley; Sipser (2012), 3rd edition, Cengage. Corrected during the check: the
+  Sipser year (2012, not 2013) and the textX venue (*Knowledge-Based Systems*, not MODELSWARD).
+  **Not confirmed:** the page range of Karttunen et al. (1996). The sources found give an
+  impossible range, so the entry is marked "[page range not verified]". The student must find
+  the page numbers before submission.
 - The poster's guide (CWU library, research posters) was read through web fetch. Its layout
   numbers are the tool's summary of the guide, not a direct quotation.
 

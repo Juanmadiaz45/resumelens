@@ -8,7 +8,7 @@ asks, and the design decisions below point back to it.
 ## 1. Regular expressions for extraction
 
 A regular expression describes a regular language, the class of languages recognized by finite
-automata (Hopcroft, Motwani & Ullman, 2006; Sipser, 2013). In practice, regular expressions are
+automata (Hopcroft, Motwani & Ullman, 2006; Sipser, 2012). In practice, regular expressions are
 the standard tool for pulling fixed kinds of tokens out of semi-structured text. Karttunen et al.
 (1996) show that many steps in natural language engineering, from tokenization to light parsing,
 can be written in a regular-expression calculus compiled into finite-state transducers. Their
@@ -88,7 +88,7 @@ errors, separately from syntax errors.
 
 ## References
 
-- Beesley, K. R., & Karttunen, L. (2003). *Finite State Morphology*. CSLI Publications.
+- Beesley, K. R., & Karttunen, L. (2003). *Finite State Morphology*. CSLI Publications, Stanford.
 - Chomsky, N. (1956). Three models for the description of language. *IRE Transactions on
   Information Theory*, 2(3), 113–124.
 - Dejanović, I., Vaderna, R., Milosavljević, G., & Vuković, Ž. (2017). TextX: A Python tool for
@@ -97,9 +97,9 @@ errors, separately from syntax errors.
 - Hopcroft, J. E., Motwani, R., & Ullman, J. D. (2006). *Introduction to Automata Theory,
   Languages, and Computation* (3rd ed.). Addison-Wesley.
 - Karttunen, L., Chanod, J.-P., Grefenstette, G., & Schiller, A. (1996). Regular expressions for
-  language engineering. *Natural Language Engineering*, 2(4), 305–328.
+  language engineering. *Natural Language Engineering*, 2(4). [page range not verified]
 - Mohri, M. (1997). Finite-state transducers in language and speech processing. *Computational
   Linguistics*, 23(2), 269–311.
-- Sipser, M. (2013). *Introduction to the Theory of Computation* (3rd ed.). Cengage Learning.
+- Sipser, M. (2012). *Introduction to the Theory of Computation* (3rd ed.). Cengage Learning.
 - pyformlang documentation. https://pyformlang.readthedocs.io/
 - textX documentation. https://textx.github.io/textX/
