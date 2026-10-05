@@ -22,33 +22,19 @@ See [`docs/profiles.md`](docs/profiles.md) for the full definition of each one.
 
 ## Pipeline
 
-| Stage | Formal model | Folder |
+| Stage | Formal model | Implementation |
 |---|---|---|
-| 1. Information extraction | Regular expressions (`re`) | `resumelens/extraction/` |
-| 2. Qualification normalization | Finite-state transducers (`pyformlang`) | `resumelens/normalization/` |
-| 3. Qualification pattern recognition | Finite automata (`pyformlang`) | `resumelens/classification/` |
-| 4. Candidate profile language | Context-free grammar (`textX`) | `resumelens/dsl/` |
+| 1. Information extraction | Regular expressions | `resumelens/extraction/extractor.py` (`re`) |
+| 2. Qualification normalization | Finite-state transducers | `resumelens/normalization/transducers.py` (`pyformlang.fst`) |
+| 3. Qualification pattern recognition | Deterministic finite automata | `resumelens/classification/automata.py` (`pyformlang`) |
+| 4. Candidate profile language | Context-free grammar (EBNF) | `resumelens/dsl/candidate.tx` (`textX`) |
 
-`resumelens/pipeline/` chains the four stages together. `resumelens/ui/` exposes a CLI to run
-the pipeline on a résumé file and produce the final visualization.
-
-## Repository structure
-
-```
-resumelens/            source code for the system
-  extraction/           stage 1 - regex
-  normalization/        stage 2 - finite-state transducers
-  classification/       stage 3 - automata
-  dsl/                  stage 4 - textX grammar + HTML/Markdown rendering
-  pipeline/             chains the four stages together
-  ui/                   CLI entry point
-tests/                 unit and integration tests (pytest)
-data/sample_resumes/   sample résumés used for development and demos
-docs/                  design and formalization documents
-poster/                research poster
-```
+`resumelens/pipeline/pipeline.py` chains the four stages. `resumelens/ui/cli.py` is the command
+line entry point.
 
 ## Setup
+
+Python 3.10 or newer is required (the code uses `X | None` type hints).
 
 ```bash
 python3 -m venv .venv
@@ -56,10 +42,32 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Running it (placeholder, will be updated as the implementation progresses)
+## Running it
+
+Screen a résumé and write its HTML page next to the input file:
 
 ```bash
-python -m resumelens.ui.cli data/sample_resumes/<file>.txt
+python -m resumelens.ui.cli data/sample_resumes/wednesday_addams.txt
+```
+
+Write the page to a different folder with `--out-dir`:
+
+```bash
+python -m resumelens.ui.cli data/sample_resumes/mary_jane_watson.txt --out-dir output/
+```
+
+The command prints the output of each stage (extracted qualifications, normalized
+qualifications, and a profile-by-profile verdict), then writes `<name>.html`. Exit codes:
+`0` success, `1` the candidate profile was rejected by the grammar, `2` the input file doesn't
+exist.
+
+To regenerate the evidence files for the ten sample résumés, run the scripts in order:
+
+```bash
+python -m scripts.extract_samples     # data/extracted/
+python -m scripts.normalize_samples   # data/normalized/
+python -m scripts.classify_samples    # data/classified/
+python -m scripts.build_profiles      # data/profiles/  (DSL, HTML, Markdown)
 ```
 
 ## Tests
@@ -68,12 +76,37 @@ python -m resumelens.ui.cli data/sample_resumes/<file>.txt
 pytest
 ```
 
+The suite has 99 tests across all four stages and the command line. `docs/test_cases.md` maps
+each scenario to the test that covers it.
+
+## Repository structure
+
+```
+resumelens/            source code
+  extraction/          stage 1 — regular expressions
+  normalization/       stage 2 — finite-state transducers and canonical ordering
+  classification/      stage 3 — profile automata
+  dsl/                 stage 4 — textX grammar, serializer, parser, HTML/Markdown rendering
+  pipeline/            chains the four stages
+  ui/                  command-line interface
+tests/                 pytest suite
+data/sample_resumes/   ten sample résumés (two from the assignment statement)
+data/extracted/        stage 1 output for each sample
+data/normalized/       stage 2 output for each sample
+data/classified/       stage 3 output for each sample
+data/profiles/         stage 4 output for each sample (.candidate, .html, .md)
+scripts/               regenerate the data/ outputs
+docs/                  design and formalization documents
+poster/                research poster
+```
+
 ## Tooling
 
-- IDE: _(add, e.g. VS Code / PyCharm)_
-- Python 3.x
+- Python 3.14 (used for development)
 - [pyformlang](https://pyformlang.readthedocs.io/) for the transducers and automata
-- [textX](https://textx.github.io/textX/) for the candidate-profile DSL
+- [textX](https://textx.github.io/textX/) for the candidate-profile grammar
+- pytest for the test suite
+- IDE: _(add, e.g. VS Code / PyCharm)_
 
 ## Design documentation
 
@@ -81,7 +114,7 @@ See [`docs/`](docs/):
 
 - `literature_review.md`
 - `profiles.md`
-- `class_notation_reference.md`
+- `class_notation_reference.md` — the notation and library APIs taken from the course slides
 - `design_modules.md`
 - `formalization_regex.md`
 - `formalization_fst.md`
