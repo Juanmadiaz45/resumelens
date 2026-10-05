@@ -73,10 +73,11 @@ more than one profile at once — that's expected, not a bug, given the overlap 
 
 | Function | Signature | Returns |
 |---|---|---|
-| Build model | `build_candidate_model(extracted: dict, normalized: list[str], classification: dict) -> CandidateModel` | an in-memory textX model instance assembled from the previous three stages |
-| Validate | `validate(model: CandidateModel) -> tuple[bool, list[str]]` | whether the model conforms to the grammar, plus a list of error messages if it doesn't |
-| Render HTML | `render_html(model: CandidateModel) -> str` | HTML page for the candidate |
-| Render Markdown | `render_markdown(model: CandidateModel) -> str` | Markdown equivalent, for cases where HTML isn't needed |
+| Serialize | `serialize_candidate(extracted: dict, normalized: list[str], classification: dict) -> str` (`serializer.py`) | candidate DSL text built from the outputs of stages 1–3. Serialization doesn't check validity; that's the parser's job |
+| Parse | `parse_candidate(text: str) -> model` (`model.py`) | the textX model; raises `CandidateValidationError` for any lexical, syntactic, or semantic violation |
+| Validate | `validate(text: str) -> tuple[bool, list[str]]` (`model.py`) | `(True, [])` for a valid candidate, or `(False, [message])` for a rejected one |
+| Render HTML | `render_html(model) -> str` (`render.py`) | HTML page for the candidate; user text is escaped |
+| Render Markdown | `render_markdown(model) -> str` (`render.py`) | Markdown equivalent of the same page |
 
 ## `resumelens.pipeline`
 
