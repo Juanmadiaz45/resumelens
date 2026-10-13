@@ -31,18 +31,25 @@ See [`docs/profiles.md`](docs/profiles.md) for the full definition of each one.
 | 3. Qualification pattern recognition | Deterministic finite automata | `resumelens/classification/automata.py` (`pyformlang`) |
 | 4. Candidate profile language | Context-free grammar (EBNF) | `resumelens/dsl/candidate.tx` (`textX`) |
 
-`resumelens/pipeline/pipeline.py` chains the four stages. `resumelens/ui/cli.py` is the command
-line entry point.
+`resumelens/pipeline/pipeline.py` chains the four stages. There are two ways to use the system:
+a web interface (`app.py`, built with Streamlit) and a command line (`resumelens/ui/cli.py`).
 
 ## Setup
 
-Python 3.11 or newer is required (pandas 3 needs it).
+You need Python 3.11 or newer (pandas 3 requires it) and Git. Check your version with
+`python3 --version`.
 
 ```bash
+git clone https://github.com/Juanmadiaz45/resumelens.git
+cd resumelens
 python3 -m venv .venv
-source .venv/bin/activate
+source .venv/bin/activate        # macOS / Linux
+# .venv\Scripts\activate         # Windows (PowerShell)
 pip install -r requirements.txt
 ```
+
+Every command below is run from the repository root with the virtual environment active (the
+prompt shows `(.venv)`).
 
 ## Running it
 
@@ -59,7 +66,28 @@ each transducer and the sorted input of each profile, the automaton diagram with
 candidate followed (or the state where it stopped), and the candidate profile in the DSL. The DSL
 text can be edited to see how the grammar rejects invalid profiles, and the validated profile can
 be downloaded as HTML, Markdown, or DSL. The "Sample set" view shows the results for the ten
-sample résumés.
+sample résumés. Stop the server with `Ctrl+C` in the terminal.
+
+#### A short tour for reviewers
+
+1. The app opens on **Wednesday Addams**, the assignment's own example. Open the
+   **3 Classification** tab: the Full Stack Developer automaton shows the path
+   `q0 → q_lang → q_front → q_back → q_db → qf` highlighted.
+2. In the same tab, select **Machine Learning Engineer**. The state where the run stops is shown
+   in red, with the reason (`δ(q0, POSTGRESQL)` is not defined).
+3. Open **2 Normalization** to see each raw string, the transducer that read it, and its
+   canonical output, followed by the sorted input each automaton receives.
+4. Open **4 Candidate profile** and edit the DSL text. Writing `git` instead of `GIT` breaks a
+   lexical rule; adding `COBOL` to the skills breaks the vocabulary check. Both are rejected
+   with the line and column of the error.
+5. In the sidebar, select **Eleven** or **Daenerys Targaryen**: each one is accepted for two
+   profiles. **Rick Sanchez** is rejected for all four.
+6. Choose **Write one** and paste your own résumé, or **Upload a .txt file**. The résumé needs
+   the candidate's name alone on the first line and the skills written with their usual
+   capitalization (for example `Python`, `PostgreSQL`, `Git`). Terms outside the vocabulary in
+   `docs/formalization_fst.md` are ignored.
+7. Switch the view at the top of the sidebar to **Sample set** to see the results for all ten
+   samples.
 
 ### Command line
 
@@ -95,8 +123,9 @@ python -m scripts.build_profiles      # data/profiles/  (DSL, HTML, Markdown)
 pytest
 ```
 
-The suite has 115 tests across the four stages, the command line, and the web interface. `docs/test_cases.md` maps
-each scenario to the test that covers it.
+The suite has 115 tests across the four stages, the command line, and the web interface (the
+web interface is tested with Streamlit's `AppTest`, without opening a browser).
+`docs/test_cases.md` maps each scenario to the test that covers it.
 
 ## Repository structure
 
