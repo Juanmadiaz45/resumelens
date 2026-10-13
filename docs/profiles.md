@@ -3,7 +3,7 @@
 ResumeLens supports four professional profiles. Two of them are fixed by the assignment
 (Full Stack Developer and Machine Learning Engineer). The other two were chosen to round out
 the coverage of the pipeline: one more profile on the software engineering side and one more
-on the AI/data side. The reasoning behind the choice was simple — both profiles share several
+on the AI/data side. The reasoning behind the choice was simple: both profiles share several
 qualifications with the predefined ones (Git, a database, Python), which forces the classification
 automata to actually distinguish between overlapping vocabularies instead of just checking for
 disjoint keyword sets.
@@ -14,12 +14,13 @@ Works across both the client and server side of an application: UI, backend serv
 database access, and integration between components.
 
 Qualifications:
-- JavaScript or TypeScript
-- React, Angular, or Vue
-- Node.js, Django, Spring Boot (or an equivalent backend framework)
-- A database (any recognized one: SQL, NoSQL, PostgreSQL, MySQL, MongoDB, and others)
-- REST APIs
-- Git
+
+1. JavaScript or TypeScript
+2. React, Angular, or Vue
+3. Node.js, Django, Spring Boot (or an equivalent backend framework)
+4. A database (any recognized one: SQL, NoSQL, PostgreSQL, MySQL, MongoDB, and others)
+5. REST APIs
+6. Git
 
 ## 2. Machine Learning Engineer (predefined)
 
@@ -27,13 +28,14 @@ Combines software development, data processing, and machine learning to build sy
 on predictive or learning models.
 
 Qualifications:
-- Python
-- Pandas or NumPy
-- Scikit-learn
-- TensorFlow or PyTorch
-- Machine learning model development
-- A database (any recognized one, as above)
-- Git
+
+1. Python
+2. Pandas or NumPy
+3. Scikit-learn
+4. TensorFlow or PyTorch
+5. Machine learning model development
+6. A database (any recognized one, as above)
+7. Git
 
 ## 3. DevOps Engineer (team-defined, software engineering)
 
@@ -44,13 +46,14 @@ shares Git and cloud-adjacent vocabulary with Full Stack Developer, but the core
 separate pattern.
 
 Qualifications:
-- Linux
-- Docker
-- Kubernetes (or K8s)
-- A CI/CD tool: Jenkins, GitHub Actions, or GitLab CI
-- An infrastructure-as-code tool: Terraform or Ansible
-- A cloud provider: AWS, Azure, or GCP
-- Git
+
+1. Linux
+2. Docker
+3. Kubernetes (or K8s)
+4. An infrastructure-as-code tool: Terraform or Ansible
+5. A CI/CD tool: Jenkins, GitHub Actions, or GitLab CI
+6. A cloud provider: AWS, Azure, or GCP
+7. Git
 
 ## 4. Data Engineer (team-defined, AI/data)
 
@@ -60,25 +63,26 @@ Engineer does downstream. This overlap with ML Engineer (Python, a database) is 
 pair of profiles that stress-tests the classification stage the most.
 
 Qualifications:
-- Python
-- A database (any recognized one, as above)
-- Apache Spark
-- Airflow
-- Kafka
-- A data warehouse: Snowflake, BigQuery, or Redshift
-- Git
+
+1. Python
+2. A database (any recognized one, as above)
+3. Apache Spark
+4. Airflow
+5. Kafka
+6. A data warehouse: Snowflake, BigQuery, or Redshift
+7. Git
 
 ## Shared qualifications across profiles
 
 | Qualification | FS Dev | ML Engineer | DevOps | Data Engineer |
 |---|---|---|---|---|
 | Git | yes | yes | yes | yes |
-| Database (any recognized) | yes | yes | — | yes |
-| Python | — | yes | — | yes |
-| Cloud provider | — | — | yes | sometimes (warehouse) |
+| Database (any recognized) | yes | yes | no | yes |
+| Python | no | yes | no | yes |
+| Cloud provider | no | no | yes | sometimes (warehouse) |
 
 This table is the reason the canonical ordering and the automata alphabets need to be designed
-carefully in stages 2 and 3 — a candidate who only lists `Python, SQL, Git` should not be
+carefully in stages 2 and 3. A candidate who only lists `Python, SQL, Git` should not be
 blindly accepted into both ML Engineer and Data Engineer; the rest of the sequence has to carry
 the distinction.
 
@@ -95,12 +99,10 @@ accepted with `POSTGRESQL` in the database position. See `formalization_automata
 The lists above describe the qualifications of each profile. The automata use them as
 required categories, not as a checklist where every item must appear:
 
-- **Required category:** at least one term from the category must be present. For Data
-  Engineer, that means at least one of Spark, Airflow, or Kafka, not all three.
-- **Optional category:** the category may be absent without rejecting the candidate. Scikit-learn
-  (ML Engineer), Linux (DevOps), REST API (Full Stack), and the data warehouse (Data Engineer)
-  are treated this way.
-- **Git** is required for all four profiles, because each profile definition above lists it.
-  Its position is always last, since it is the final step in every automaton.
+**Required category:** at least one term from the category must be present. For Data Engineer, that means at least one of Spark, Airflow, or Kafka, not all three.
+
+**Optional category:** the category may be absent without rejecting the candidate. Scikit-learn (ML Engineer), Linux (DevOps), REST API (Full Stack), and the data warehouse (Data Engineer) are treated this way.
+
+**Git** is required for all four profiles, because each profile definition above lists it. Its position is always last, since it is the final step in every automaton.
 
 The exact patterns are in `formalization_automata.md`.

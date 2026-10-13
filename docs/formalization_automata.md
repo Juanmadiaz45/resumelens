@@ -1,4 +1,4 @@
-# Formalization — Stage 3: Finite Automata
+# Formalization of Stage 3: Finite Automata
 
 For each profile: the complete 5-tuple M = (Q, Σ, δ, q0, F), the automaton type (DFA/NFA/NFA-λ)
 with justification, a transition diagram, an explanation of the pattern it represents, and a
@@ -12,30 +12,31 @@ automaton with them is an **NFA-λ**, not an "ε-NFA".
 ## Why all four profiles end up as DFAs
 
 The activity description explicitly allows DFA, NFA, or NFA-λ, so this was an actual design
-decision, not a default — here's the reasoning that led to a DFA for all four.
+decision and not a default. This is the reasoning that led to a DFA for all four.
 
 A finite automaton needs genuine non-determinism (Δ instead of δ) only when the same symbol,
-read from the same state, could legitimately lead to more than one next state — i.e. the machine
-would have to guess, or try several paths at once. That happens in two common situations:
+read from the same state, could legitimately lead to more than one next state. In other words,
+the machine would have to guess, or try several paths at once. That happens in two common situations:
 either two categories of qualification share a symbol (ambiguous meaning), or the input could
 arrive in more than one relative order (so the automaton doesn't know yet which "slot" a symbol
-is filling). Neither holds here:
+is filling). Neither holds here.
 
-- Every canonical term produced by stage 2 belongs to exactly one category for a given profile
-  (`JAVASCRIPT` is always "language", never "framework"), so there's no symbol that could mean
-  two different things depending on path taken.
-- `sort_by_profile_order` (stage 2) already arranges each candidate's terms into the profile's
-  canonical category order before stage 3 ever sees them. The automaton is never handed a
-  sequence where, say, a database term shows up before the backend framework — stage 2 already
-  ruled that out. So the automaton doesn't need to branch and backtrack to figure out "is this
-  the frontend slot or did I misread the order" — there's only ever one slot it could be.
+First, every canonical term produced by stage 2 belongs to exactly one category for a given
+profile (`JAVASCRIPT` is always a language, never a framework), so no symbol can mean two
+different things depending on the path taken.
+
+Second, `sort_by_profile_order` (stage 2) already arranges each candidate's terms into the
+profile's canonical category order before stage 3 sees them. The automaton is never handed a
+sequence where, say, a database term shows up before the backend framework, because stage 2
+already ruled that out. The automaton doesn't need to branch and backtrack to work out which slot
+a symbol fills; there is only ever one slot it could be.
 
 Because of that, every state in the automata below has at most one outgoing transition per
-symbol — multiple arrows leaving the same state (e.g. one for `PANDAS`, one for `NUMPY`, both
+symbol. Several arrows leaving the same state (e.g. one for `PANDAS`, one for `NUMPY`, both
 landing on the same next state) are still a function, not a relation: δ(q, PANDAS) and
 δ(q, NUMPY) are just two different, unambiguous entries of the same δ. This is exactly the shape
 of the automaton in the assignment's own stage 3 example (parallel `PANDAS`/`NUMPY` edges into
-the same state) — which is itself a DFA by this same reasoning, even though the assignment
+the same state), which is itself a DFA by this same reasoning, even though the assignment
 doesn't label it explicitly.
 
 Where NFA or NFA-λ would actually be the right tool: if stage 2 didn't enforce a canonical
@@ -46,12 +47,12 @@ non-determinism in just to use it.
 
 One more consequence of δ being a genuine function: it's **partial**, not total. A state only
 has transitions defined for the symbols that make sense at that point in the pattern; any other
-symbol has no defined transition, which models rejection directly — the same way an unrecognized
+symbol has no defined transition, which models rejection directly, the same way an unrecognized
 term in stage 2 just has no transition and gets dropped.
 
 ## Shared alphabet
 
-All four automata share the same Σ — the full set of canonical terms stage 2 can produce (the
+All four automata share the same Σ: the full set of canonical terms stage 2 can produce (the
 union of every transducer's Γ from `formalization_fst.md`):
 
 ```
@@ -67,28 +68,24 @@ union of every transducer's Γ from `formalization_fst.md`):
 
 A shorthand used in all four transition tables below: **DB** = {SQL, NOSQL, POSTGRESQL, MYSQL,
 MONGODB, SQLITE, REDIS, CASSANDRA}. Every profile that cares about a database treats any of
-these eight interchangeably — this came directly out of the assignment's own ML Engineer
+these eight interchangeably. This came directly out of the assignment's own ML Engineer
 example, which accepts `POSTGRESQL` even though `profiles.md` only lists "SQL" for that profile.
 Once one real example shows a database product standing in for the generic term, the honest
 thing is to accept the whole category everywhere a database qualification matters, not just the
 literal word "SQL".
 
 In every automaton below, the accepting state `qf` has a self-loop on **all** of Σ. That's what
-lets a candidate with qualifications beyond what the profile requires still get accepted — the
+lets a candidate with qualifications beyond what the profile requires still get accepted. The
 automaton is checking that the required pattern appears as a prefix of the canonical, sorted
 sequence, not that the sequence contains nothing else. `sort_by_profile_order` guarantees that
 anything not part of the profile's pattern ends up after everything that is, so "prefix" and
 "the parts that matter" line up.
 
----
+## Automaton 1: Full Stack Developer
 
-## Automaton 1 — Full Stack Developer
-
-- **Q** = {q0, q_lang, q_front, q_back, q_db, qf}
-- **Σ**: shared alphabet above
-- **q0**: initial state
-- **F** = {qf}
-- **Type**: DFA — every (state, symbol) pair below maps to exactly one state.
+M = (Q, Σ, δ, q0, F) with **Q** = {q0, q_lang, q_front, q_back, q_db, qf}, Σ the shared alphabet
+above, δ given by the table below, initial state q0, and **F** = {qf}. It is a DFA: every
+(state, symbol) pair below maps to exactly one state.
 
 | state | on symbol(s) | → state |
 |---|---|---|
@@ -125,15 +122,11 @@ qualification (REST API is recognized but doesn't advance the state, matching ho
 qualification in `profiles.md` that isn't always spelled out explicitly in a résumé), followed by
 Git.
 
----
+## Automaton 2: Machine Learning Engineer
 
-## Automaton 2 — Machine Learning Engineer
-
-- **Q** = {q0, q_py, q_arr, q_ml, q_db, qf}
-- **Σ**: shared alphabet above
-- **q0**: initial state
-- **F** = {qf}
-- **Type**: DFA, same reasoning as automaton 1.
+M = (Q, Σ, δ, q0, F) with **Q** = {q0, q_py, q_arr, q_ml, q_db, qf}, Σ the shared alphabet,
+δ given by the table below, initial state q0, and **F** = {qf}. It is a DFA for the same reason
+as automaton 1.
 
 | state | on symbol(s) | → state |
 |---|---|---|
@@ -164,26 +157,22 @@ stateDiagram-v2
     qf --> [*]
 ```
 
-**Pattern represented:** Python, followed by a data-handling library (Pandas or NumPy — Scikit-
-learn is recognized in that same slot but, like REST API in automaton 1, doesn't gate progress
-to the next slot, since the assignment's own worked example is accepted without it), followed by
+**Pattern represented:** Python, followed by a data-handling library (Pandas or NumPy; Scikit-learn
+is recognized in that same slot but, like REST API in automaton 1, doesn't gate progress to the
+next slot, since the assignment's own worked example is accepted without it), followed by
 a model-building library (TensorFlow or PyTorch), followed by a database qualification, followed
 by Git. This reproduces the assignment's own example exactly: `PYTHON, PANDAS, TENSORFLOW,
 POSTGRESQL, GIT` is accepted without ever visiting a `SCIKIT_LEARN` transition.
 
----
+## Automaton 3: DevOps Engineer
 
-## Automaton 3 — DevOps Engineer
-
-- **Q** = {q0, q_docker, q_k8s, q_iac, q_ci, q_cloud, qf}
-- **Σ**: shared alphabet above
-- **q0**: initial state
-- **F** = {qf}
-- **Type**: DFA, same reasoning as automaton 1.
+M = (Q, Σ, δ, q0, F) with **Q** = {q0, q_docker, q_k8s, q_iac, q_ci, q_cloud, qf}, Σ the shared
+alphabet, δ given by the table below, initial state q0, and **F** = {qf}. It is a DFA for the
+same reason as automaton 1.
 
 | state | on symbol(s) | → state |
 |---|---|---|
-| q0 | LINUX | q0 (self-loop — optional, doesn't gate anything) |
+| q0 | LINUX | q0 (self-loop, optional)  |
 | q0 | DOCKER | q_docker |
 | q_docker | DOCKER | q_docker (self-loop) |
 | q_docker | KUBERNETES | q_k8s |
@@ -218,20 +207,16 @@ stateDiagram-v2
 
 **Pattern represented:** Docker, followed by Kubernetes, followed by an infrastructure-as-code
 tool, followed by a CI/CD tool, followed by a cloud provider, followed by Git. Linux is
-recognized at the very start but is purely optional — it loops back on `q0` without requiring
+recognized at the very start but is purely optional. It loops back on `q0` without requiring
 the rest of the chain to wait for it, which matters in practice since container/cloud tooling
 implies a Linux environment without every résumé spelling it out (see `michael_scott.txt`, who
 is accepted without ever mentioning Linux).
 
----
+## Automaton 4: Data Engineer
 
-## Automaton 4 — Data Engineer
-
-- **Q** = {q0, q_py, q_db, q_pipe, qf}
-- **Σ**: shared alphabet above
-- **q0**: initial state
-- **F** = {qf}
-- **Type**: DFA, same reasoning as automaton 1.
+M = (Q, Σ, δ, q0, F) with **Q** = {q0, q_py, q_db, q_pipe, qf}, Σ the shared alphabet, δ given
+by the table below, initial state q0, and **F** = {qf}. It is a DFA for the same reason as
+automaton 1.
 
 | state | on symbol(s) | → state |
 |---|---|---|
@@ -259,17 +244,15 @@ stateDiagram-v2
 ```
 
 **Pattern represented:** Python, followed by a database qualification, followed by at least one
-data-pipeline tool (any combination of Spark, Airflow, and Kafka, in any count — a data warehouse
-product is recognized in that same slot but is optional, same role as Scikit-learn in automaton
-2), followed by Git.
+data-pipeline tool (any combination of Spark, Airflow, and Kafka, in any count; a data warehouse
+product is recognized in that same slot but is optional, the same role Scikit-learn has in
+automaton 2), followed by Git.
 
----
-
-## Worked examples — classification of all ten sample résumés
+## Worked examples: classification of the ten sample résumés
 
 Computed by running each résumé through stages 1 and 2, then checking it against all four
-automata (full simulation, matching what `resumelens/classification/automata.py` will implement
-in pyformlang):
+automata. The results match the output of `resumelens/classification/automata.py`, stored in
+`data/classified/`.
 
 | Résumé | Sorted sequence (per matching profile) | Accepted profile(s) |
 |---|---|---|
@@ -280,13 +263,13 @@ in pyformlang):
 | `michael_scott.txt` | DOCKER, KUBERNETES, ANSIBLE, GITHUB_ACTIONS, AZURE, GIT | DEVOPS_ENGINEER |
 | `hermione_granger.txt` | PYTHON, SQL, SPARK, AIRFLOW, SNOWFLAKE, GIT | DATA_ENGINEER |
 | `walter_white.txt` | PYTHON, SQL, KAFKA, BIGQUERY, REDSHIFT, GIT | DATA_ENGINEER |
-| `daenerys_targaryen.txt` | FS: JAVASCRIPT, REACT, NODE_JS, POSTGRESQL, GIT — DevOps: DOCKER, KUBERNETES, TERRAFORM, JENKINS, AWS, GIT | FULL_STACK_DEVELOPER, DEVOPS_ENGINEER |
-| `eleven.txt` | ML: PYTHON, PANDAS, SCIKIT_LEARN, TENSORFLOW, SQL, GIT — DataEng: PYTHON, SQL, SPARK, AIRFLOW, GIT | MACHINE_LEARNING_ENGINEER, DATA_ENGINEER |
+| `daenerys_targaryen.txt` | FS: JAVASCRIPT, REACT, NODE_JS, POSTGRESQL, GIT. DevOps: DOCKER, KUBERNETES, TERRAFORM, JENKINS, AWS, GIT | FULL_STACK_DEVELOPER, DEVOPS_ENGINEER |
+| `eleven.txt` | ML: PYTHON, PANDAS, SCIKIT_LEARN, TENSORFLOW, SQL, GIT. DataEng: PYTHON, SQL, SPARK, AIRFLOW, GIT | MACHINE_LEARNING_ENGINEER, DATA_ENGINEER |
 | `rick_sanchez.txt` | PYTHON, BASH, GIT (no automaton's required chain is completed) | *(none)* |
 
 `daenerys_targaryen.txt` and `eleven.txt` were deliberately built to satisfy two profiles at
-once — each has the full required chain for both, which is what makes them useful test cases for
-automaton 6 (C6) in `test_cases.md`: a candidate isn't limited to a single matching profile, and
+once. Each has the full required chain for both, which makes them useful for test case C6 in
+`test_cases.md`: a candidate isn't limited to a single matching profile, and
 the four automata are checked independently, not as mutually exclusive branches of one bigger
 machine. `rick_sanchez.txt` never advances past the first required transition for any profile
 (too few qualifications), which is exactly the intended "insufficient profile" case.

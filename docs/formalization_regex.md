@@ -1,4 +1,4 @@
-# Formalization — Stage 1: Regular Expressions
+# Formalization of Stage 1: Regular Expressions
 
 Stage 1 turns a plain-text résumé into raw qualification strings and candidate data. For each
 category, this document gives the regular expression as it appears in
@@ -64,7 +64,7 @@ captured number is the value. Covers "3 years of experience", "4+ years of exper
 
 **Language:** one of the listed language names, as a whole word.
 
-**Decision — case-sensitive.** This pattern has no ignore-case flag, unlike the others. `Go` is
+**Decision: case-sensitive.** This pattern has no ignore-case flag, unlike the others. `Go` is
 also an ordinary English word, and matching it case-insensitively would pick up "go" in prose.
 The trade-off is that `python` written in lowercase is not extracted. Résumés in the samples
 capitalize language names, so this doesn't affect the tests, but it's a limitation for real
@@ -124,11 +124,11 @@ category because these are infrastructure rather than application code.
 words, as in `B.Sc. in Computer Science` or `Master in Data Science`. The output is a dictionary
 with the degree and the field.
 
-**Two corrections made during implementation.**
-- The trailing `\b` was removed. `B.Sc.` ends with a period, and a period followed by a space is
-  not a word boundary, so the whole pattern silently failed to match on `B.Sc.`.
-- The field capture uses `[ \t]` instead of `\s`. With `\s`, the field continued across the line
-  break and captured the next heading, `Technical Skills`.
+**Two corrections made during implementation.** The first version ended with a `\b`, and it
+silently failed on `B.Sc.`: the degree ends with a period, and a period followed by a space is
+not a word boundary. The trailing `\b` was removed. The first version also used `\s` in the
+field capture, so the field continued across the line break and captured the next heading,
+`Technical Skills`. The field capture now uses `[ \t]`.
 
 ## Tools and version control
 
@@ -151,10 +151,11 @@ stored in `data/extracted/*.json`.
 
 ## Known limitations
 
-- The name rule assumes the name is on the first line.
-- Language names are case-sensitive, so lowercase input is missed.
-- The phone pattern is loose and can match non-phone digit sequences.
-- Only one experience summary is extracted per résumé, because a résumé's employment history is
-  not parsed.
-- The vocabulary is a fixed list. A tool that isn't in a pattern is not extracted, and it can't
-  be classified either. Adding a term requires changing the regex and the matching transducer.
+The name rule assumes the name is on the first line, and language names are case-sensitive, so
+lowercase input is missed. The phone pattern is loose and can match digit sequences that are not
+phone numbers. Only one experience summary is extracted per résumé, because the employment
+history itself is not parsed.
+
+The vocabulary is also a fixed list. A tool that isn't in a pattern is not extracted, so it can't
+be classified either, and adding a term requires changing both the regex and the matching
+transducer.

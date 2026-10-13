@@ -1,4 +1,4 @@
-# Formalization — Stage 4: Candidate Profile DSL (textX)
+# Formalization of Stage 4: Candidate Profile DSL (textX)
 
 The last stage turns the outputs of stages 1–3 into a small domain-specific language that
 describes one candidate. The grammar lives in `resumelens/dsl/candidate.tx`; this document is
@@ -80,19 +80,13 @@ they're represented as attributes or match rules rather than as separate classes
 
 ## Structural characteristics
 
-- **Fixed section order.** The sections come in the order `candidate`, `contact`,
-  experiences, educations, `skills`, `classification`. A representation that puts `skills` before
-  `contact` is a syntax error. This is a deliberate choice: the order is the language, and a
-  fixed order makes every candidate file look the same, which matters once several candidates
-  are being compared or rendered side by side.
-- **Repeated elements.** Experiences and educations can each repeat zero or more times
-  (`{ Experience }`, `{ Education }`). Skills and classification results need at least one
-  entry, because a candidate with no skills has no profile to classify.
-- **Optional contact fields.** Each contact field may be absent, but the `contact` keyword is
-  always present, so an empty contact section is still a valid section.
-- **Closed vocabularies.** Degrees, profile names, and verdicts are finite enumerations written
-  directly in the grammar. Skills are the one open-ended category, constrained by the
-  vocabulary check below.
+**Fixed section order.** The sections come in the order `candidate`, `contact`, experiences, educations, `skills`, `classification`. A representation that puts `skills` before `contact` is a syntax error. This is a deliberate choice: the order is the language, and a fixed order makes every candidate file look the same, which matters once several candidates are being compared or rendered side by side.
+
+**Repeated elements.** Experiences and educations can each repeat zero or more times (`{ Experience }`, `{ Education }`). Skills and classification results need at least one entry, because a candidate with no skills has no profile to classify.
+
+**Optional contact fields.** Each contact field may be absent, but the `contact` keyword is always present, so an empty contact section is still a valid section.
+
+**Closed vocabularies.** Degrees, profile names, and verdicts are finite enumerations written directly in the grammar. Skills are the one open-ended category, constrained by the vocabulary check below.
 
 ## Validation layers
 
@@ -144,12 +138,9 @@ into the HTML, so a name containing markup is shown as text instead of being int
 
 ## What the grammar doesn't enforce
 
-- **Not every profile has to appear.** `classification` needs at least one `ProfileResult`, but
-  the pipeline always writes all four, so this is a choice of the serializer, not of the grammar.
-- **Experience isn't attributed.** An `Experience` records a number of years, not an employer or
-  role, because stage 1 extracts only the summary sentence. The grammar could carry more detail
-  later without changing the existing productions.
-- **Skill order isn't enforced.** The grammar accepts skills in any order. Canonical ordering is
-  stage 2's responsibility and is applied per profile before classification. The DSL keeps the
-  order it is given, which is the extraction order (languages, then frameworks, databases, cloud
-  tools, data tools, and tools), not the order the skills appear in the résumé text.
+**Not every profile has to appear.** `classification` needs at least one `ProfileResult`, but the pipeline always writes all four, so this is a choice of the serializer, not of the grammar.
+
+**Experience isn't attributed.** An `Experience` records a number of years, not an employer or role, because stage 1 extracts only the summary sentence. The grammar could carry more detail later without changing the existing productions.
+
+**Skill order isn't enforced.** The grammar accepts skills in any order. Canonical ordering is stage 2's responsibility and is applied per profile before classification. The DSL keeps the order it is given, which is the extraction order (languages, then frameworks, databases, cloud tools, data tools, and tools), not the order the skills appear in the résumé text.
+

@@ -1,8 +1,8 @@
-# Design — Modules
+# Module Design
 
 This document lays out how the four stages of ResumeLens are split into functions before any of
-them gets implemented. The idea is to keep every stage as a pure transformation — it takes the
-output of the previous stage and returns something the next one can consume — so the four
+them gets implemented. The idea is to keep every stage as a pure transformation: it takes the
+output of the previous stage and returns something the next one can consume. That way the four
 stages can be tested on their own and the pipeline module just has to wire them together in
 order.
 
@@ -22,13 +22,13 @@ flowchart TD
 
 The boundary between stages 1 and 2 matters: extraction only pulls out strings as they appear
 in the text (`JS`, `React.js`, `NodeJS`...). It has no notion of what those strings mean or
-whether they're equivalent to one another — that's entirely normalization's job. Keeping that
+whether they're equivalent to one another; that's entirely normalization's job. Keeping that
 line strict is what lets stage 1 and stage 2 be tested independently.
 
 ## `resumelens.extraction`
 
 Input to every function here is the raw résumé text. Output is always a plain Python structure
-(list or dict of strings) — no normalization, no interpretation, just what the regex matched.
+(list or dict of strings), with no normalization, no interpretation, just what the regex matched.
 
 | Function | Signature | Returns |
 |---|---|---|
@@ -53,7 +53,7 @@ can have its own unit tests and its own regex documented in `formalization_regex
 | Normalize | `normalize(raw_terms: list[str]) -> list[str]` | canonical terms, each one passed through the matching transducer; a term none of the transducers recognize is dropped, since an unrecognized term can't be part of any profile's alphabet in stage 3 anyway |
 | Canonical ordering | `sort_by_profile_order(terms: list[str], profile: str) -> list[str]` | the same terms reordered according to the profile's defined category order (see `formalization_fst.md`) |
 
-`normalize` doesn't know which profile it's dealing with — it just maps each raw string to its
+`normalize` doesn't know which profile it's dealing with. It just maps each raw string to its
 canonical form. The profile only comes into play in `sort_by_profile_order`, which is what makes
 the final sequence comparable against a fixed-alphabet automaton regardless of how the candidate
 originally listed their skills.
@@ -66,7 +66,7 @@ originally listed their skills.
 
 Internally this runs the sequence against the four automata (one per profile) built in
 `automata.py` and just collects whether each one accepted it. A candidate can be accepted into
-more than one profile at once — that's expected, not a bug, given the overlap documented in
+more than one profile at once. That's expected, not a bug, given the overlap documented in
 `docs/profiles.md`.
 
 ## `resumelens.dsl`
@@ -90,4 +90,4 @@ more than one profile at once — that's expected, not a bug, given the overlap 
 A thin CLI wrapper: `python -m resumelens.ui.cli <path_to_resume.txt>` calls
 `pipeline.run()`, prints the result of each stage to the terminal, and writes the rendered HTML
 to disk next to the input file. No web UI is planned unless there's time left after stage 4 is
-done — the CLI is enough to demonstrate the full pipeline end to end.
+done, since the CLI is enough to demonstrate the full pipeline end to end.

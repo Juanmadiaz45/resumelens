@@ -2,8 +2,7 @@
 
 ResumeLens uses four formal models in sequence: regular expressions, finite-state transducers,
 finite automata, and context-free grammars. This review covers the background for each one and
-records how it shaped the design. It was written before the implementation, as the assignment
-asks, and the design decisions below point back to it.
+records how it shaped the design.
 
 ## 1. Regular expressions for extraction
 
@@ -18,8 +17,9 @@ pipeline rather than as the whole solution.
 **Design consequence.** Stage 1 only extracts raw strings. It doesn't decide whether two strings
 mean the same thing, and it doesn't decide whether a candidate fits a profile. Keeping that line
 strict lets each stage be tested on its own. The patterns use word boundaries, so that `JS` is
-not found inside another word, and they use alternations for the known vocabulary. Extraction
-stays case-insensitive because résumés are inconsistent about capitalization.
+not found inside another word, and they use alternations for the known vocabulary. Most patterns
+are case-insensitive because résumés are inconsistent about capitalization. Programming language
+names are the exception, so that the English word "go" is not read as the Go language.
 
 ## 2. Finite-state transducers for normalization
 
@@ -72,34 +72,45 @@ errors, separately from syntax errors.
 
 ## 5. Tools
 
-- **pyformlang** (Python library) implements finite automata, finite-state transducers, and
-  context-free grammars. The API used in the implementation follows the examples in the course
-  slides (see `class_notation_reference.md`).
-- **textX** (Python library) parses DSL text into Python objects, as described above.
+pyformlang is a Python library that implements finite automata, finite-state transducers, and
+context-free grammars. The API used in the implementation follows the examples in the course
+slides (see `class_notation_reference.md`). textX is the Python library that parses the DSL text
+into Python objects, as described above.
 
 ## 6. Gaps
 
-- The résumé-screening literature (automated hiring, résumé parsing) was not reviewed in depth.
-  The problem here is narrower: checking explicit qualifications against formal patterns. It does
-  not rank candidates, and it does not use learned models. This review only covers the formal
-  language background that the design depends on.
-- No empirical comparison with other screening methods is included. The evaluation is limited to
-  ten hand-written sample résumés.
+The résumé-screening literature (automated hiring, résumé parsing) was not reviewed in depth. The
+problem here is narrower: checking explicit qualifications against formal patterns. The system
+does not rank candidates and does not use learned models, so this review only covers the formal
+language background that the design depends on.
+
+No empirical comparison with other screening methods is included either. The evaluation is
+limited to ten hand-written sample résumés.
 
 ## References
 
-- Beesley, K. R., & Karttunen, L. (2003). *Finite State Morphology*. CSLI Publications, Stanford.
-- Chomsky, N. (1956). Three models for the description of language. *IRE Transactions on
-  Information Theory*, 2(3), 113–124.
-- Dejanović, I., Vaderna, R., Milosavljević, G., & Vuković, Ž. (2017). TextX: A Python tool for
-  Domain-Specific Languages implementation. *Knowledge-Based Systems*, 115, 1–4.
-- Fowler, M. (2010). *Domain-Specific Languages*. Addison-Wesley.
-- Hopcroft, J. E., Motwani, R., & Ullman, J. D. (2006). *Introduction to Automata Theory,
-  Languages, and Computation* (3rd ed.). Addison-Wesley.
-- Karttunen, L., Chanod, J.-P., Grefenstette, G., & Schiller, A. (1996). Regular expressions for
-  language engineering. *Natural Language Engineering*, 2(4). [page range not verified]
-- Mohri, M. (1997). Finite-state transducers in language and speech processing. *Computational
-  Linguistics*, 23(2), 269–311.
-- Sipser, M. (2012). *Introduction to the Theory of Computation* (3rd ed.). Cengage Learning.
-- pyformlang documentation. https://pyformlang.readthedocs.io/
-- textX documentation. https://textx.github.io/textX/
+Beesley, K. R., & Karttunen, L. (2003). *Finite State Morphology*. CSLI Publications, Stanford.
+
+Chomsky, N. (1956). Three models for the description of language. *IRE Transactions on
+Information Theory*, 2(3), 113–124.
+
+Dejanović, I., Vaderna, R., Milosavljević, G., & Vuković, Ž. (2017). TextX: A Python tool for
+Domain-Specific Languages implementation. *Knowledge-Based Systems*, 115, 1–4.
+
+Fowler, M. (2010). *Domain-Specific Languages*. Addison-Wesley.
+
+Hopcroft, J. E., Motwani, R., & Ullman, J. D. (2006). *Introduction to Automata Theory,
+Languages, and Computation* (3rd ed.). Addison-Wesley.
+
+Karttunen, L., Chanod, J.-P., Grefenstette, G., & Schiller, A. (1996). Regular expressions for
+language engineering. *Natural Language Engineering*, 2(4), 305–328.
+https://doi.org/10.1017/S1351324997001563
+
+Mohri, M. (1997). Finite-state transducers in language and speech processing. *Computational
+Linguistics*, 23(2), 269–311.
+
+Sipser, M. (2012). *Introduction to the Theory of Computation* (3rd ed.). Cengage Learning.
+
+pyformlang documentation. https://pyformlang.readthedocs.io/
+
+textX documentation. https://textx.github.io/textX/

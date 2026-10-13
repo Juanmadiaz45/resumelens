@@ -4,7 +4,7 @@ Every scenario below is covered by an automated test. The last column names the 
 the test function where it helps to find the case). Run the whole suite with `pytest` from the
 project root; it currently passes 99 tests.
 
-## Stage 1 — Extraction (`tests/test_extraction.py`)
+## Stage 1: Extraction (`tests/test_extraction.py`)
 
 | ID | Scenario | Input | Expected result | Covered by |
 |---|---|---|---|---|
@@ -14,7 +14,7 @@ project root; it currently passes 99 tests.
 | E4 | Years of experience in different phrasings | "3 years", "4+ years", "1 year" of experience | value correctly captured | `test_experience_years_in_different_phrasings` |
 | E5 | Education degree ending in a period, field followed by a newline | `B.Sc. in Computer Science` then a heading | degree `B.Sc.`, field `Computer Science` (no bleed into the next line) | `test_education_is_captured_without_bleeding_into_the_next_line` |
 
-## Stage 2 — Normalization (`tests/test_normalization.py`)
+## Stage 2: Normalization (`tests/test_normalization.py`)
 
 | ID | Scenario | Input | Expected result | Covered by |
 |---|---|---|---|---|
@@ -24,7 +24,7 @@ project root; it currently passes 99 tests.
 | N4 | Order of the input doesn't change the result | same terms, scrambled | identical sorted output | `test_sort_is_independent_of_input_order` |
 | N5 | Terms outside the profile are kept, appended at the end | `REACT` in the data engineer order | kept, after the profile's own terms | `test_terms_outside_the_profile_are_kept_and_appended_at_the_end` |
 
-## Stage 3 — Classification (`tests/test_classification.py`)
+## Stage 3: Classification (`tests/test_classification.py`)
 
 | ID | Scenario | Input | Expected result | Covered by |
 |---|---|---|---|---|
@@ -41,7 +41,7 @@ project root; it currently passes 99 tests.
 | C11 | Empty input | `[]` | `REJECTED` everywhere | `test_empty_input_is_rejected_everywhere` |
 | C12 | Automaton is deterministic by construction | conflicting spec rows | `ValueError` | `test_build_dfa_rejects_a_spec_that_would_be_nondeterministic` |
 
-## Stage 4 — DSL (`tests/test_dsl.py`)
+## Stage 4: DSL (`tests/test_dsl.py`)
 
 | ID | Scenario | Input | Expected result | Covered by |
 |---|---|---|---|---|

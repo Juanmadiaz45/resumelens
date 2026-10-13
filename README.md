@@ -2,9 +2,9 @@
 
 **Team:** Flux
 
-**Course:** Computación y Estructuras Discretas III — 2026-2, Integrative Task 1
+**Course:** Computación y Estructuras Discretas III, 2026-2, Integrative Task 1
 
-**Members:** Juan Manuel Diaz Moreno - A00394477
+**Members:** Juan Manuel Diaz Moreno (A00394477)
 
 ResumeLens is a résumé-screening system built on formal language theory. It takes a résumé as
 plain text, runs it through four processing stages, and determines whether the qualifications
@@ -85,10 +85,10 @@ each scenario to the test that covers it.
 
 ```
 resumelens/            source code
-  extraction/          stage 1 — regular expressions
-  normalization/       stage 2 — finite-state transducers and canonical ordering
-  classification/      stage 3 — profile automata
-  dsl/                 stage 4 — textX grammar, serializer, parser, HTML/Markdown rendering
+  extraction/          stage 1: regular expressions
+  normalization/       stage 2: finite-state transducers and canonical ordering
+  classification/      stage 3: profile automata
+  dsl/                 stage 4: textX grammar, serializer, parser, HTML/Markdown rendering
   pipeline/            chains the four stages
   ui/                  command-line interface
 tests/                 pytest suite
@@ -104,26 +104,27 @@ poster/                research poster
 
 ## Tooling
 
-- Python 3.14 (used for development)
-- [pyformlang](https://pyformlang.readthedocs.io/) for the transducers and automata
-- [textX](https://textx.github.io/textX/) for the candidate-profile grammar
-- pytest for the test suite
-- IDE: _(to be confirmed by the team)_
+The project was developed in Visual Studio Code with Python 3.14. It uses
+[pyformlang](https://pyformlang.readthedocs.io/) for the transducers and automata,
+[textX](https://textx.github.io/textX/) for the candidate-profile grammar, and pytest for the
+test suite.
 
 ## Design documentation
 
-See [`docs/`](docs/):
+All documents are in [`docs/`](docs/):
 
-- `literature_review.md`
-- `profiles.md`
-- `class_notation_reference.md` — the notation and library APIs taken from the course slides
-- `design_modules.md`
-- `formalization_regex.md`
-- `formalization_fst.md`
-- `formalization_automata.md`
-- `formalization_dsl.md`
-- `test_cases.md`
-- `presentation.md` — the 10-minute presentation script
-- `ai_usage_log.md` — record of AI interactions (draft, to be completed by the student)
+| Document | Content |
+|---|---|
+| `Integrative-Task1-2026-2_CyED3.pdf` | Assignment statement |
+| `literature_review.md` | Background on the four formal models and the references used |
+| `profiles.md` | Definition of the four professional profiles |
+| `class_notation_reference.md` | Notation and library APIs taken from the course slides |
+| `design_modules.md` | Module design and interfaces between stages |
+| `formalization_regex.md` | Stage 1 regular expressions |
+| `formalization_fst.md` | Stage 2 transducers |
+| `formalization_automata.md` | Stage 3 automata |
+| `formalization_dsl.md` | Stage 4 grammar in EBNF |
+| `test_cases.md` | Test scenarios and the tests that cover them |
+| `ai_usage_log.md` | Record of the interactions with AI |
 
 The research poster is in `poster/poster.html` (print it as an A1 landscape PDF from a browser).
