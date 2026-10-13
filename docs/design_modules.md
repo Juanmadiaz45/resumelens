@@ -87,7 +87,18 @@ more than one profile at once. That's expected, not a bug, given the overlap doc
 
 ## `resumelens.ui`
 
-A thin CLI wrapper: `python -m resumelens.ui.cli <path_to_resume.txt>` calls
-`pipeline.run()`, prints the result of each stage to the terminal, and writes the rendered HTML
-to disk next to the input file. No web UI is planned unless there's time left after stage 4 is
-done, since the CLI is enough to demonstrate the full pipeline end to end.
+There are two interfaces, and neither contains any formal-model logic of its own.
+
+The command line, `python -m resumelens.ui.cli <path_to_resume.txt>`, calls `pipeline.run()`,
+prints the result of each stage to the terminal, and writes the rendered HTML next to the input
+file.
+
+The web interface, `app.py` at the repository root, is built with Streamlit and started with
+`streamlit run app.py`. It calls the four stages one by one instead of `pipeline.run()`, so it can
+still show stages 1 to 3 when the grammar rejects the candidate in stage 4. To draw the path a
+candidate follows through an automaton it uses two functions from `automata.py`:
+
+| Function | Signature | Returns |
+|---|---|---|
+| Transition table | `transition_table(profile: str) -> dict[str, dict[str, str]]` | the automaton's δ as `{state: {symbol: next_state}}` |
+| Trace | `trace(profile: str, normalized_terms: list[str]) -> tuple[list[str], list[str]]` | the input sorted for the profile and the states visited; the path ends early at the first symbol with no transition |

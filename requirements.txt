@@ -1,3 +1,5 @@
-pyformlang>=1.0.9
-textX>=4.0.0
-pytest>=8.0.0
+pyformlang==1.0.11
+textX==4.4.0
+streamlit==1.65.0
+pandas==3.0.6
+pytest==9.1.1

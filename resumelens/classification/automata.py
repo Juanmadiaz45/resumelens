@@ -144,6 +144,32 @@ def accepts(profile: str, normalized_terms: list[str]) -> bool:
     return PROFILE_AUTOMATA[profile].accepts(sorted_terms)
 
 
+def transition_table(profile: str) -> dict[str, dict[str, str]]:
+    """The profile automaton's δ as plain strings: {state: {symbol: next_state}}."""
+    return {
+        str(state): {str(symbol): str(target) for symbol, target in moves.items()}
+        for state, moves in PROFILE_AUTOMATA[profile].to_dict().items()
+    }
+
+
+def trace(profile: str, normalized_terms: list[str]) -> tuple[list[str], list[str]]:
+    """Return the sorted input and the states visited while reading it.
+
+    If a symbol has no transition, the run stops there, so the path is shorter than
+    the input by more than one state.
+    """
+    sorted_terms = sort_by_profile_order(normalized_terms, profile)
+    table = transition_table(profile)
+    state = str(PROFILE_AUTOMATA[profile].start_state)
+    path = [state]
+    for symbol in sorted_terms:
+        state = table.get(state, {}).get(symbol)
+        if state is None:
+            break
+        path.append(state)
+    return sorted_terms, path
+
+
 def classify(normalized_terms: list[str]) -> dict[str, str]:
     """Run the four profile automata over a candidate's normalized qualifications.
     Each automaton gets its own canonical ordering, so the result doesn't depend on

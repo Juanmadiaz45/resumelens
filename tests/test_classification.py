@@ -3,7 +3,13 @@ from pathlib import Path
 import pytest
 from pyformlang.finite_automaton import DeterministicFiniteAutomaton
 
-from resumelens.classification.automata import PROFILE_AUTOMATA, _build_dfa, accepts, classify
+from resumelens.classification.automata import (
+    PROFILE_AUTOMATA,
+    _build_dfa,
+    accepts,
+    classify,
+    trace,
+)
 from resumelens.extraction.extractor import extract_all
 from resumelens.normalization.transducers import normalize
 
@@ -127,3 +133,16 @@ def test_order_of_input_does_not_change_the_result():
 
 def test_empty_input_is_rejected_everywhere():
     assert set(classify([]).values()) == {"REJECTED"}
+
+
+def test_trace_follows_the_full_stack_path_for_the_assignment_example():
+    terms = ["GIT", "NODE_JS", "JAVASCRIPT", "POSTGRESQL", "REACT"]
+    sorted_terms, path = trace("FULL_STACK_DEVELOPER", terms)
+    assert sorted_terms == ["JAVASCRIPT", "REACT", "NODE_JS", "POSTGRESQL", "GIT"]
+    assert path == ["q0", "q_lang", "q_front", "q_back", "q_db", "qf"]
+
+
+def test_trace_stops_at_the_first_symbol_without_a_transition():
+    sorted_terms, path = trace("FULL_STACK_DEVELOPER", ["JAVASCRIPT", "REACT", "POSTGRESQL", "GIT"])
+    assert path == ["q0", "q_lang", "q_front"]
+    assert len(path) < len(sorted_terms) + 1

@@ -2,7 +2,7 @@
 
 Every scenario below is covered by an automated test. The last column names the test file (and
 the test function where it helps to find the case). Run the whole suite with `pytest` from the
-project root; it currently passes 99 tests.
+project root; it currently passes 115 tests.
 
 ## Stage 1: Extraction (`tests/test_extraction.py`)
 
@@ -40,6 +40,8 @@ project root; it currently passes 99 tests.
 | C10 | A required slot is missing | Full Stack without a database | `REJECTED` | `test_missing_required_slot_rejects_the_candidate` |
 | C11 | Empty input | `[]` | `REJECTED` everywhere | `test_empty_input_is_rejected_everywhere` |
 | C12 | Automaton is deterministic by construction | conflicting spec rows | `ValueError` | `test_build_dfa_rejects_a_spec_that_would_be_nondeterministic` |
+| C13 | Trace of an accepted run | the assignment's unsorted Full Stack example | sorted input and path `q0 → q_lang → q_front → q_back → q_db → qf` | `test_trace_follows_the_full_stack_path_for_the_assignment_example` |
+| C14 | Trace of a rejected run | Full Stack without a backend framework | the path stops at `q_front` | `test_trace_stops_at_the_first_symbol_without_a_transition` |
 
 ## Stage 4: DSL (`tests/test_dsl.py`)
 
@@ -64,3 +66,16 @@ project root; it currently passes 99 tests.
 | I5 | CLI on a valid résumé | exit 0, HTML written, summary printed | `test_cli_writes_html_and_exits_zero` |
 | I6 | CLI on a missing file | exit 2 with a message | `test_cli_returns_2_for_a_missing_file` |
 | I7 | CLI on a résumé the grammar rejects | exit 1 with the grammar error | `test_cli_returns_1_when_the_grammar_rejects_the_candidate` |
+
+## Web interface (`tests/test_app.py`)
+
+These tests run `app.py` with Streamlit's `AppTest`, without a browser.
+
+| ID | Scenario | Expected result | Covered by |
+|---|---|---|---|
+| U1 | The app opens | no exception; Wednesday Addams is shown, since it is the assignment's example | `test_app_opens_on_the_assignment_example` |
+| U2 | Each of the ten samples is selected | no exception and no error message | `test_every_sample_renders_without_errors` |
+| U3 | A written résumé without a name on the first line | a warning explains the problem; the app doesn't fail | `test_written_resume_without_a_name_shows_a_message_instead_of_failing` |
+| U4 | A written résumé with no recognized skills | the grammar rejects the profile and a warning says why | `test_written_resume_without_skills_is_rejected_by_the_grammar` |
+| U5 | The "Sample set" view | the summary reports 7 résumés with one profile, 2 with two, and 1 with none | `test_sample_set_view_summarizes_the_ten_resumes` |
+

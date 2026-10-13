@@ -36,7 +36,7 @@ line entry point.
 
 ## Setup
 
-Python 3.10 or newer is required (the code uses `X | None` type hints).
+Python 3.11 or newer is required (pandas 3 needs it).
 
 ```bash
 python3 -m venv .venv
@@ -45,6 +45,23 @@ pip install -r requirements.txt
 ```
 
 ## Running it
+
+### Web interface
+
+```bash
+streamlit run app.py
+```
+
+The app opens at `http://localhost:8501`. In the sidebar you choose one of the sample résumés,
+upload a `.txt` file, or write a résumé directly. For each résumé the app shows the verdict for the
+four profiles and one tab per stage: the strings found by the regular expressions, the output of
+each transducer and the sorted input of each profile, the automaton diagram with the path the
+candidate followed (or the state where it stopped), and the candidate profile in the DSL. The DSL
+text can be edited to see how the grammar rejects invalid profiles, and the validated profile can
+be downloaded as HTML, Markdown, or DSL. The "Sample set" view shows the results for the ten
+sample résumés.
+
+### Command line
 
 Screen a résumé and write its HTML page next to the input file:
 
@@ -78,7 +95,7 @@ python -m scripts.build_profiles      # data/profiles/  (DSL, HTML, Markdown)
 pytest
 ```
 
-The suite has 99 tests across all four stages and the command line. `docs/test_cases.md` maps
+The suite has 115 tests across the four stages, the command line, and the web interface. `docs/test_cases.md` maps
 each scenario to the test that covers it.
 
 ## Repository structure
@@ -91,6 +108,7 @@ resumelens/            source code
   dsl/                 stage 4: textX grammar, serializer, parser, HTML/Markdown rendering
   pipeline/            chains the four stages
   ui/                  command-line interface
+app.py                 Streamlit web interface
 tests/                 pytest suite
 data/sample_resumes/   ten sample résumés (two from the assignment statement)
 data/extracted/        stage 1 output for each sample
@@ -106,8 +124,8 @@ poster/                research poster
 
 The project was developed in Visual Studio Code with Python 3.14. It uses
 [pyformlang](https://pyformlang.readthedocs.io/) for the transducers and automata,
-[textX](https://textx.github.io/textX/) for the candidate-profile grammar, and pytest for the
-test suite.
+[textX](https://textx.github.io/textX/) for the candidate-profile grammar,
+[Streamlit](https://streamlit.io/) for the web interface, and pytest for the test suite.
 
 ## Design documentation
 
