@@ -127,4 +127,4 @@ All documents are in [`docs/`](docs/):
 | `test_cases.md` | Test scenarios and the tests that cover them |
 | `ai_usage_log.md` | Record of the interactions with AI |
 
-The research poster is in `poster/poster.html` (print it as an A1 landscape PDF from a browser).
+The research poster is `poster/Poster.pdf` (A0 landscape).
